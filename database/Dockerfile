@@ -5,7 +5,7 @@ FROM mysql:8.0
 ENV MYSQL_ROOT_PASSWORD=root
 ENV MYSQL_DATABASE=myapp
 
-# Создаем volume (опционально, т.к. в команде указано)
+# Создаем volume
 VOLUME ["/var/lib/mysql"]
 
 # Открываем порт MySQL
