@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+    <header class="p-3 text-bg-dark">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <!-- Логотип -->
+                <div class="col-md-2">
+                    <a href="/" class="d-flex align-items-center text-white text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                            <use xlink:href="#bootstrap"></use>
+                        </svg>
+                        <span class="fs-4">MyApp</span>
+                    </a>
+                </div>
+
+                <!-- Навигация -->
+                <div class="col-md-6">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link px-2 text-secondary">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link px-2 text-white">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link px-2 text-white">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link px-2 text-white">FAQs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link px-2 text-white">About</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Поиск и кнопки -->
+                <div class="col-md-4">
+                    <div class="row align-items-center">
+                        <div class="col-7">
+                            <input type="search" class="form-control form-control-dark" placeholder="Search...">
+                        </div>
+                        <div class="col-5">
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-light btn-sm">Login</button>
+                                <button type="button" class="btn btn-warning btn-sm">Sign-up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+</html>

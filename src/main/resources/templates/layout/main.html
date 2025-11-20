@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">MyApp</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<!-- Header -->
+<div th:replace="~{layout/header :: header}"></div>
+
+<!-- 🔥 ИСПРАВЛЕНИЕ: Добавили flex-grow-1 и h-100 -->
+<div class="flex-grow-1 d-flex">  <!-- 🔥 flex-grow-1 + d-flex -->
+    <div class="row g-0 w-100">   <!-- 🔥 w-100 чтобы занимал всю ширину -->
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-xl-2 d-flex">  <!-- 🔥 d-flex для сайдбара -->
+            <div th:replace="~{layout/sidebar :: sidebar}"></div>
+        </div>
+
+        <!-- Page Content -->
+        <main class="col-lg-9 col-xl-10 p-4">
+            <div th:fragment="content">
+                <h1>Добро пожаловать!</h1>
+                <p>Это основная страница.</p>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{layout/footer :: footer}"></div>
+
+<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
