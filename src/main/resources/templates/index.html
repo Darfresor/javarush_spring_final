@@ -2,47 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <!-- ✅ ДОБАВИЛ: для адаптивности на мобильных -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <title th:text="${appTitle} ?: 'Мое приложение'">Мое приложение</title>
     <style>
-        body { font-family: Arial; text-align: center; margin-top: 100px; }
-        .container { max-width: 800px; margin: 0 auto; }
+        /* Убрал старые стили, оставил только градиент */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
     </style>
 </head>
-<body>
-<div class="container">
-    <!-- Динамический заголовок -->
-    <h1 th:text="'🚀 ' + ${welcomeMessage}">🚀 Добро пожаловать!</h1>
+<!-- ✅ ДОБАВИЛ: класс для секции -->
+<body class="hero-section">
+<!-- ✅ ДОБАВИЛ: Bootstrap контейнер + центрирование -->
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="text-center">
+        <!-- ✅ ДОБАВИЛ: Bootstrap typography классы -->
+        <h1 class="display-4 fw-bold mb-4" th:text="'🚀 ' + ${welcomeMessage}">🚀 Добро пожаловать!</h1>
 
-    <!-- Динамический текст с датой -->
-    <p>
-        Приложение <span th:text="${appName} ?: 'Spring Boot'">Spring Boot</span>
-        успешно запущено
-        <span th:text="${#temporals.format(#temporals.createNow(), 'dd.MM.yyyy HH:mm')}">
-            01.01.2024 12:00
-        </span>
-    </p>
+        <!-- ✅ ДОБАВИЛ: lead класс + badge для названия приложения -->
+        <p class="lead mb-4">
+            Приложение <span class="badge bg-light text-dark" th:text="${appName} ?: 'Spring Boot'">Spring Boot</span>
+            успешно запущено
+            <span class="fw-bold" th:text="${#temporals.format(#temporals.createNow(), 'dd.MM.yyyy HH:mm')}">
+                    01.01.2024 12:00
+                </span>
+        </p>
 
-    <!-- Динамические ссылки -->
-    <div>
-        <a th:href="@{/api/info}" th:text="${infoLinkText} ?: 'Информация'">Информация</a> |
-        <a th:href="@{/swagger-ui.html}">Документация API</a> |
+        <!-- ✅ ДОБАВИЛ: Кнопки вместо простых ссылок -->
+        <div class="d-grid gap-2 d-md-block mb-4">
+            <a th:href="@{/api/info}" class="btn btn-light btn-lg me-2"
+               th:text="${infoLinkText} ?: 'Информация'">Информация</a>
+            <a th:href="@{/swagger-ui.html}" class="btn btn-outline-light btn-lg me-2">
+                Документация API
+            </a>
 
-        <!-- Условное отображение ссылки -->
-        <a th:href="@{/admin}" th:if="${isAdmin}">Админка</a>
+            <!-- ✅ ДОБАВИЛ: Стилизованные условные ссылки -->
+            <a th:href="@{/admin}" class="btn btn-warning btn-lg me-2" th:if="${isAdmin}">
+                Админка
+            </a>
 
-        <!-- Ссылка с параметром -->
-        <a th:href="@{/user/{id}(id=${userId})}" th:if="${userId != null}">
-            Мой профиль
-        </a>
-    </div>
+            <a th:href="@{/user/{id}(id=${userId})}" class="btn btn-info btn-lg" th:if="${userId != null}">
+                Мой профиль
+            </a>
+        </div>
 
-    <!-- Список функций (если передан) -->
-    <div th:if="${not #lists.isEmpty(features)}">
-        <h3>Доступные функции:</h3>
-        <ul>
-            <li th:each="feature : ${features}" th:text="${feature}">Функция</li>
-        </ul>
+        <!-- ✅ ДОБАВИЛ: Стилизованный список функций -->
+        <div th:if="${not #lists.isEmpty(features)}" class="mt-5">
+            <h3 class="mb-3">Доступные функции:</h3>
+            <div class="list-group">
+                <div th:each="feature : ${features}" class="list-group-item bg-transparent text-white border-light">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span th:text="${feature}">Функция</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

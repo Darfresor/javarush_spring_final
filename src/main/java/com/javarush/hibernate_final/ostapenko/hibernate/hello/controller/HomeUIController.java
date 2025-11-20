@@ -23,6 +23,6 @@ public class HomeUIController {
                 "Командная работа"
         ));
 
-        return "index"; // Ищет src/main/resources/templates/index.html
+        return "index2"; // Ищет src/main/resources/templates/index.html
     }
 }
