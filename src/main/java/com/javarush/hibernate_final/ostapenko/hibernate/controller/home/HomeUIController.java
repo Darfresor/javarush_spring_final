@@ -1,4 +1,4 @@
-package com.javarush.hibernate_final.ostapenko.hibernate.hello.controller;
+package com.javarush.hibernate_final.ostapenko.hibernate.controller.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

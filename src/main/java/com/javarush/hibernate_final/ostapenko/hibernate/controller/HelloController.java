@@ -1,4 +1,4 @@
-package com.javarush.hibernate_final.ostapenko.hibernate.hello.controller;
+package com.javarush.hibernate_final.ostapenko.hibernate.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
