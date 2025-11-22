@@ -3,7 +3,7 @@ package com.javarush.hibernate_final.ostapenko.hibernate.model.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "USERS", schema = "myapp")
+@Table(name = "users", schema = "myapp")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,13 @@ public class User {
     private String password;
 
     public User() {
+    }
+
+    public User(String displayName, String mail, String firstname, String password) {
+        this.displayName = displayName;
+        this.email = mail;
+        this.firstName = firstname;
+        this.password = password;
     }
 
     @Override

@@ -1,8 +1,8 @@
 USE myapp;
 
-DROP TABLE IF EXISTS USERS;
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE USERS
+CREATE TABLE users
 (
     ID              bigint          not null  AUTO_INCREMENT PRIMARY KEY,
     DISPLAY_NAME    varchar(32)     not null,

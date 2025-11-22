@@ -1,3 +1,26 @@
 1763794762394|1|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
 1763794961730|1|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
 1763794962347|25|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0
+1763795301969|1|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763795302459|5|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0
+1763795302543|6|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|insert into USERS (display_name,email,first_name,last_name,password) values (?,?,?,?,?)|insert into USERS (display_name,email,first_name,last_name,password) values ('user','user@gmail.com','firstname',NULL,'querty')
+1763795302585|11|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763795302606|2|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0
+1763833547430|1|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763833547980|7|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0
+1763833548068|8|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|insert into USERS (display_name,email,first_name,last_name,password) values (?,?,?,?,?)|insert into USERS (display_name,email,first_name,last_name,password) values ('user','user@gmail.com','firstname',NULL,'querty')
+1763833548121|20|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763833548140|2|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0
+1763837208580|1|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763837209061|5|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0
+1763837209142|2|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|insert into USERS (display_name,email,first_name,last_name,password) values (?,?,?,?,?)|insert into USERS (display_name,email,first_name,last_name,password) values ('user','user@gmail.com','firstname',NULL,'querty')
+1763837209183|6|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763837209200|2|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from USERS u1_0
+1763837440721|1|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763837441193|5|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from users u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from users u1_0
+1763837441261|2|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|insert into users (display_name,email,first_name,last_name,password) values (?,?,?,?,?)|insert into users (display_name,email,first_name,last_name,password) values ('user','user@gmail.com','firstname',NULL,'querty')
+1763837441404|107|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763837441431|10|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from users u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from users u1_0
+1763837450191|1|commit|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp||
+1763837450724|6|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from users u1_0|select u1_0.id,u1_0.display_name,u1_0.email,u1_0.first_name,u1_0.last_name,u1_0.password from users u1_0
+1763837450933|56|statement|connection 0|url jdbc:p6spy:mysql://localhost:3306/myapp|insert into users (display_name,email,first_name,last_name,password) values (?,?,?,?,?)|insert into users (display_name,email,first_name,last_name,password) values ('user','user@gmail.com','firstname',NULL,'querty')

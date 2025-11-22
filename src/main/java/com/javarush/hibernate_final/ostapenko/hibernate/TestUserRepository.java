@@ -3,6 +3,7 @@ package com.javarush.hibernate_final.ostapenko.hibernate;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
@@ -36,6 +37,13 @@ public class TestUserRepository {
     public List<User> getAllUsers(){
         try(Session session = sessionFactory.openSession()){
             return session.createQuery("from User", User.class).list();
+        }
+    }
+    public void addUser(User user){
+        try(Session session = sessionFactory.openSession()){
+            Transaction transaction = session.beginTransaction();
+            session.persist(user);
+            transaction.commit();
         }
     }
 }

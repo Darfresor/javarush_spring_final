@@ -61,5 +61,11 @@ public class Tests {
         List<User> users =  repo.getAllUsers();
         System.out.println(users);
 
+        User user1 = new User("user", "user@gmail.com", "firstname", "querty");
+        repo.addUser(user1);
+
+        users =  repo.getAllUsers();
+        System.out.println(users);
+
     }
 }
