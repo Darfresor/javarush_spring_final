@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class QuestsUIController {
@@ -17,8 +18,14 @@ public class QuestsUIController {
     }
 
     @GetMapping("/quests")
-    public String quests(Model model) {
-        Page<Quest> questsPage = questService.getQuests(0, 4);
+    public String quests(
+            Model model,
+            @RequestParam(defaultValue = "0")
+            int page,
+            @RequestParam(defaultValue = "4")
+            int size
+    ) {
+        Page<Quest> questsPage = questService.getQuests(page, size);
         model.addAttribute("questsPage", questsPage);
         model.addAttribute("quests", questsPage.getContent()); // список квестов
         model.addAttribute("currentPage", questsPage.getNumber());
