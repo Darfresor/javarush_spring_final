@@ -5,42 +5,58 @@
 
     <!-- Контент для container -->
     <appMain>
-        <div class="row">
-            <div class="col-12">
-                <div th:each="quest : ${quests}" class="card mb-3">
-                    <div class="card-body">
-                        <h5 th:text="${quest.questName}">Название квеста</h5>
-                        <p th:if="${quest.imgPath}">
-                            <img th:src="@{'/images/' +${quest.imgPath}}" alt="Default Image">
-                        </p>
-                        <p th:text="${quest.description}">Описание квеста</p>
-                        <p>Статус:
-                            <span th:if="${quest.new}" class="badge bg-success">Новый</span>
-                            <span th:unless="${quest.new}" class="badge bg-secondary">Старый</span>
-                        </p>
+        <div class="container-fluid">
+            <!-- Сетка карточек 2x2 -->
+            <div class="row">
+                <div th:each="quest, iter : ${quests}" class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <!-- Изображение квеста -->
+                        <div class="card-img-top-container" style="height: 200px; overflow: hidden;">
+                            <img th:src="${'/images/' + (quest.imgPath != null ? quest.imgPath : 'quests/default_img.jpg')}"
+                                 th:alt="${quest.questName}"
+                                 class="card-img-top h-100 w-100"
+                                 style="object-fit: cover;">
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title" th:text="${quest.questName}">Название квеста</h5>
+
+                            <p class="card-text flex-grow-1" th:text="${quest.description}">Описание квеста</p>
+
+                            <div class="mt-auto">
+                                <p th:if="${quest.new}"  class="mb-2">
+                                    Статус:
+                                    <span th:if="${quest.new}" class="badge bg-success">Новый</span>
+                                </p>
+                                <a th:href="@{'/quests/' + ${quest.id}}" class="btn btn-primary w-100">
+                                    Подробнее
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="pagination">
-                    <!-- Кнопка "Назад" -->
-                    <a th:if="${currentPage > 0}"
-                       th:href="@{/quests(page=${currentPage - 1})}"
-                       class="page-link">← Назад</a>
-
-                    <!-- Номера страниц -->
-                    <a th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
-                       th:href="@{/quests(page=${page})}"
-                       th:text="${page + 1}"
-                       th:class="${page == currentPage} ? 'page-link active' : 'page-link'">
-                    </a>
-
-                    <!-- Кнопка "Вперед" -->
-                    <a th:if="${currentPage < totalPages - 1}"
-                       th:href="@{/quests(page=${currentPage + 1})}"
-                       class="page-link">Вперед →</a>
-                </div>
-
             </div>
+
+            <!-- Пагинация -->
+            <div class="pagination">
+                <!-- Кнопка "Назад" -->
+                <a th:if="${currentPage > 0}"
+                   th:href="@{/quests(page=${currentPage - 1})}"
+                   class="page-link">← Назад</a>
+
+                <!-- Номера страниц -->
+                <a th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
+                   th:href="@{/quests(page=${page})}"
+                   th:text="${page + 1}"
+                   th:class="${page == currentPage} ? 'page-link active' : 'page-link'">
+                </a>
+
+                <!-- Кнопка "Вперед" -->
+                <a th:if="${currentPage < totalPages - 1}"
+                   th:href="@{/quests(page=${currentPage + 1})}"
+                   class="page-link">Вперед →</a>
+            </div>
+
         </div>
     </appMain>
 

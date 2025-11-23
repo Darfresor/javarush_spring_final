@@ -13,7 +13,7 @@ FROM quests;
 
 INSERT INTO quests
     (id, quest_name, description, img_path)
-VALUES (1, 'Квест1', 'тут будет описание','quests/default_img.jpg'),
+VALUES (1, 'Квест1', 'тут будет описание','quests/quest1/title.jpg'),
        (2, 'Квест2', 'тут будет описание', null),
        (3, 'Квест3', 'тут будет описание', null),
        (4, 'Квест4', 'тут будет описание', null),
