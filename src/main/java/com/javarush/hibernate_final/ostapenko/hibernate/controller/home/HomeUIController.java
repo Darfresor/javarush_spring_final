@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeUIController {
 
-   @GetMapping("/")
-    public String home(Model model) {
+   @GetMapping({"/", "/home"})
+   public String home(Model model) {
         model.addAttribute("appTitle", "Мое крутое приложение");
         model.addAttribute("welcomeMessage", "Добро пожаловать в нашу систему!");
         model.addAttribute("appName", "quest");
@@ -25,4 +25,5 @@ public class HomeUIController {
 
         return "pages/home"; // Ищет src/main/resources/templates/index.html
     }
+
 }

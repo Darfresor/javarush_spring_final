@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="header">
+<div th:fragment="header(activeMenuItem)">
     <header class="p-3 text-bg-dark">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -18,19 +18,40 @@
                 <div class="col-md-6">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-secondary">Home</a>
+                            <a th:href="@{/home}"
+                               th:class="'nav-link ' + (${activeMenuItem == 'home'} ? 'active text-white' : 'text-white')">
+                                Home
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-white">Features</a>
+                            <a th:href="@{/quests}"
+                               th:class="'nav-link ' + (${activeMenuItem == 'quests'} ? 'active text-white' : 'text-white')">
+                                Квесты
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-white">Pricing</a>
+                            <a th:href="@{/features}"
+                               th:class="'nav-link ' + (${activeMenuItem == 'features'} ? 'active text-white' : 'text-white')">
+                                Features
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-white">FAQs</a>
+                            <a th:href="@{/pricing}"
+                               th:class="'nav-link ' + (${activeMenuItem == 'pricing'} ? 'active text-white' : 'text-white')">
+                                Pricing
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="@{/swagger-ui.html}" class="nav-link px-2 text-white">Документация API</a>
+                            <a th:href="@{/faqs}"
+                               th:class="'nav-link ' + (${activeMenuItem == 'faqs'} ? 'active text-white' : 'text-white')">
+                                FAQs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/swagger-ui.html}"
+                               th:class="'nav-link ' + (${activeMenuItem == 'api'} ? 'active text-white' : 'text-white')">
+                                Документация API
+                            </a>
                         </li>
                     </ul>
                 </div>

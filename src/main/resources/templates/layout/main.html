@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="page"
+<th:block th:fragment="page(title, appMain, appMainFluid, activeMenuItem)"
           th:with="img=${img}?:~{}, descr=${descr}?: ${title}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title}">MyApp</title>
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-</head>
-<body class="d-flex flex-column min-vh-100">
-<!-- Header -->
-<div th:replace="~{layout/header :: header}"></div>
-<div class="flex-grow-1 d-flex">
-    <div class="row g-0 w-100">
-        <!-- Sidebar -->
-        <div class="col-lg-3 col-xl-2 d-flex">  <!-- 🔥 d-flex для сайдбара -->
-            <div th:replace="~{layout/sidebar :: sidebar}"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title th:text="${title}">MyApp</title>
+        <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+    <!-- Header с передачей activeMenuItem -->
+    <div th:replace="~{layout/header :: header(activeMenuItem=${activeMenuItem})}"></div>
+
+    <div class="flex-grow-1 d-flex">
+        <div class="row g-0 w-100">
+            <!-- Sidebar с передачей activeMenuItem -->
+            <div class="col-lg-3 col-xl-2 d-flex">
+                <div th:replace="~{layout/sidebar :: sidebar(activeMenuItem=${activeMenuItem})}"></div>
+            </div>
+
+            <!-- Page Content -->
+            <main class="col-lg-9 col-xl-10 p-4">
+                <div class="container">
+                    <th:block th:insert="${appMain}?: ~{}"/>
+                </div>
+                <div class="container-fluid">
+                    <th:block th:insert="${appMainFluid}?: ~{}"/>
+                </div>
+            </main>
         </div>
-
-        <!-- Page Content -->
-        <main class="col-lg-9 col-xl-10 p-4">
-            <div class="container">
-                <th:block th:insert="${appMain}?: ~{}"/>
-            </div>
-            <div class="container-fluid">
-                <th:block th:insert="${appMainFluid}?: ~{}"/>
-            </div>
-        </main>
     </div>
-</div>
 
-<!-- Footer -->
-<div th:replace="~{layout/footer :: footer}"></div>
-</body>
-<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script src="/static/jquery/js/jquery.min.js"></script>
+    <!-- Footer -->
+    <div th:replace="~{layout/footer :: footer}"></div>
+    </body>
+    <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/jquery/js/jquery.min.js}"></script>
 </html>

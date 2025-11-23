@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
-<th:block
-        th:replace="~{layout/main::page(title='Home',appMainFluid=~{::appMain}, activeMenuItem='home')}">
+<th:block th:replace="~{layout/main :: page(title='Home', appMain=~{::appMain}, appMainFluid=~{::appMainFluid}, activeMenuItem='home')}">
+
+    <!-- Контент для container -->
     <appMain>
-        <h1>Home</h1>
-        Здесь будут новости нашей мастерской
+        <div class="row">
+            <div class="col-12">
+                <h1>Добро пожаловать!</h1>
+                <p class="lead">Здесь будут новости нашей мастерской</p>
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Последние новости</h5>
+                        <p class="card-text">Скоро здесь появятся актуальные обновления и анонсы.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </appMain>
+
 </th:block>

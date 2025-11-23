@@ -9,7 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class TestSpring implements CommandLineRunner {
 
     private  UserService userService;
