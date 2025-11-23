@@ -1,5 +1,6 @@
 package com.javarush.hibernate_final.ostapenko.hibernate;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Quest;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.User;
 
 import javax.sql.rowset.CachedRowSet;
@@ -57,6 +58,7 @@ public class Tests {
             System.out.println(crs.getRow() + ". " + id + "\t"+ name);
         }
         */
+        /*
         TestUserRepository repo = new TestUserRepository();
         List<User> users =  repo.getAllUsers();
         System.out.println(users);
@@ -66,6 +68,10 @@ public class Tests {
 
         users =  repo.getAllUsers();
         System.out.println(users);
+        */
+        Quest quest = new Quest(1L,"тестовый квест","какое-то описание");
+        System.out.println(quest.getQuestName());
+
 
     }
 }

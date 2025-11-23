@@ -1,18 +1,28 @@
 package com.javarush.hibernate_final.ostapenko.hibernate;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Quest;
+import com.javarush.hibernate_final.ostapenko.hibernate.model.service.QuestService;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
 
 @SpringBootApplication
 public class TestSpring implements CommandLineRunner {
 
-    private final UserService userService;
+    private  UserService userService;
+    private  QuestService questService;
 
-    // Конструкторная инъекция
+
     public TestSpring(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public TestSpring(QuestService questService) {
+        this.questService = questService;
     }
 
     public static void main(String[] args) {
@@ -23,6 +33,10 @@ public class TestSpring implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Этот метод выполняется после полной инициализации Spring
-        System.out.println(userService.findByEmail("user@gmail.com"));
+        //System.out.println(userService.findByEmail("user@gmail.com"));
+       Page<Quest> page =  questService.getQuests(0, 10);
+       page.getContent().forEach(quest->{
+           System.out.println(quest);
+       });
     }
 }
