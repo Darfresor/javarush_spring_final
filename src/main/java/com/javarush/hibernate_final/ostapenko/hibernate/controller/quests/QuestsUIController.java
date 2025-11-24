@@ -1,5 +1,6 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.quests;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.DTO.QuestTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Quest;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.service.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class QuestsUIController {
             @RequestParam(defaultValue = "4")
             int size
     ) {
-        Page<Quest> questsPage = questService.getQuests(page, size);
+        Page<QuestTo> questsPage = questService.getQuests(page, size);
         model.addAttribute("questsPage", questsPage);
         model.addAttribute("quests", questsPage.getContent()); // список квестов
         model.addAttribute("currentPage", questsPage.getNumber());

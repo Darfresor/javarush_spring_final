@@ -1,5 +1,6 @@
 package com.javarush.hibernate_final.ostapenko.hibernate;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.DTO.QuestTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Quest;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.service.QuestService;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.service.UserService;
@@ -34,7 +35,7 @@ public class TestSpring implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // Этот метод выполняется после полной инициализации Spring
         //System.out.println(userService.findByEmail("user@gmail.com"));
-       Page<Quest> page =  questService.getQuests(0, 10);
+       Page<QuestTo> page =  questService.getQuests(0, 10);
        page.getContent().forEach(quest->{
            System.out.println(quest);
        });

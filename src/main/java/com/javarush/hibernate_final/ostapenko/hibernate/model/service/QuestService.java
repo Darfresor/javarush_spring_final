@@ -1,23 +1,37 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.model.service;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.DTO.QuestTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Quest;
+import com.javarush.hibernate_final.ostapenko.hibernate.model.mapper.QuestMapper;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.repository.QuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class QuestService {
     private final QuestRepository questRepository;
+    private final QuestMapper questMapper;
 
     @Autowired
-    public QuestService(QuestRepository questRepository) {
+    public QuestService(QuestRepository questRepository, QuestMapper questMapper) {
         this.questRepository = questRepository;
+        this.questMapper = questMapper;
     }
-    public Page<Quest> getQuests(int page, int size){
+    public Page<QuestTo> getQuests(int page, int size){
         Pageable pageable = PageRequest.of(page, size);
-        return questRepository.findAll(pageable);
+        Page<Quest> questPage = questRepository.findAll(pageable);
+        List<QuestTo> questDtos = questMapper.toDtoList(questPage.getContent());
+
+        return new PageImpl<>(
+                questDtos,
+                pageable,
+                questPage.getTotalElements()
+        );
     }
 }
