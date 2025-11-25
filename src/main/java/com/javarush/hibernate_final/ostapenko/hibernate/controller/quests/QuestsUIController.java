@@ -1,16 +1,16 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.quests;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.QuestTo;
-import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Quest;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.service.QuestService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("ui/quests")
 public class QuestsUIController {
     private final QuestService questService;
 
@@ -18,7 +18,7 @@ public class QuestsUIController {
         this.questService = questService;
     }
 
-    @GetMapping("/quests")
+    @GetMapping
     public String quests(
             Model model,
             @RequestParam(defaultValue = "0")

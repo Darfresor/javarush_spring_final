@@ -14,23 +14,23 @@
                     </a>
                 </div>
 
-                <!-- Навигация -->
-                <div class="col-md-6">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <a th:href="@{/home}"
-                               th:class="'nav-link ' + (${activeMenuItem == 'home'} ? 'active text-white' : 'text-white')">
-                                Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/quests}"
-                               th:class="'nav-link ' + (${activeMenuItem == 'quests'} ? 'active text-white' : 'text-white')">
-                                Квесты
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/features}"
+                 <!-- Навигация -->
+                            <div class="col-md-6">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item">
+                                        <a th:href="@{/ui/home}"
+                                           th:class="'nav-link ' + (${activeMenuItem == 'home'} ? 'active text-white' : 'text-white')">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a th:href="@{/ui/quests}"
+                                           th:class="'nav-link ' + (${activeMenuItem == 'quests'} ? 'active text-white' : 'text-white')">
+                                            Квесты
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a th:href="@{/features}"
                                th:class="'nav-link ' + (${activeMenuItem == 'features'} ? 'active text-white' : 'text-white')">
                                 Features
                             </a>

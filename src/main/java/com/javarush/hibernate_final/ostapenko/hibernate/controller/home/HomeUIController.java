@@ -3,11 +3,12 @@ package com.javarush.hibernate_final.ostapenko.hibernate.controller.home;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeUIController {
 
-   @GetMapping({"/", "/home"})
+   @GetMapping({"/", "ui/home"})
    public String home(Model model) {
         model.addAttribute("appTitle", "Мое крутое приложение");
         model.addAttribute("welcomeMessage", "Добро пожаловать в нашу систему!");

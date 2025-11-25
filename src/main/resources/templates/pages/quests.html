@@ -41,19 +41,19 @@
             <div class="pagination">
                 <!-- Кнопка "Назад" -->
                 <a th:if="${currentPage > 0}"
-                   th:href="@{/quests(page=${currentPage - 1})}"
+                   th:href="@{/ui/quests(page=${currentPage - 1})}"
                    class="page-link">← Назад</a>
 
                 <!-- Номера страниц -->
                 <a th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
-                   th:href="@{/quests(page=${page})}"
+                   th:href="@{/ui/quests(page=${page})}"
                    th:text="${page + 1}"
                    th:class="${page == currentPage} ? 'page-link active' : 'page-link'">
                 </a>
 
                 <!-- Кнопка "Вперед" -->
                 <a th:if="${currentPage < totalPages - 1}"
-                   th:href="@{/quests(page=${currentPage + 1})}"
+                   th:href="@{/ui/quests(page=${currentPage + 1})}"
                    class="page-link">Вперед →</a>
             </div>
 
