@@ -8,7 +8,6 @@
         <div class="container-fluid">
             <!-- Сетка карточек 2x2 -->
             <div class="row">
-                <div th:each="quest, iter : ${quests}" class="col-lg-6 col-md-6 col-sm-12 mb-4">
                     <div class="card h-100 shadow-sm">
                         <!-- Изображение квеста - ИЗМЕНЕНО -->
                         <div class="card-img-top-container" style="height: 200px; overflow: hidden; display: flex; justify-content: center; align-items: center; background-color: #f8f9fa;">
@@ -28,34 +27,15 @@
                                     Статус:
                                     <span th:if="${quest.new}" class="badge bg-success">Новый</span>
                                 </p>
-                                <a th:href="@{'/ui/quests/quest/' + ${quest.id}}" class="btn btn-primary w-100">
-                                    Подробнее
+                                <a th:href="@{/ui/quests/quest/start(id=${quest.id})}" class="btn btn-primary w-100">
+                                    Начать игру
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
 
-            <!-- Пагинация -->
-            <div class="pagination">
-                <!-- Кнопка "Назад" -->
-                <a th:if="${currentPage > 0}"
-                   th:href="@{/ui/quests(page=${currentPage - 1})}"
-                   class="page-link">← Назад</a>
 
-                <!-- Номера страниц -->
-                <a th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
-                   th:href="@{/ui/quests(page=${page})}"
-                   th:text="${page + 1}"
-                   th:class="${page == currentPage} ? 'page-link active' : 'page-link'">
-                </a>
-
-                <!-- Кнопка "Вперед" -->
-                <a th:if="${currentPage < totalPages - 1}"
-                   th:href="@{/ui/quests(page=${currentPage + 1})}"
-                   class="page-link">Вперед →</a>
-            </div>
 
         </div>
     </appMain>

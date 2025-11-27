@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestService {
@@ -33,5 +34,14 @@ public class QuestService {
                 pageable,
                 questPage.getTotalElements()
         );
+    }
+    public QuestTo findById(Long id){
+        Optional<Quest> questOptional = questRepository.findById(id);
+        if(questOptional.isPresent()){
+            Quest quest = questOptional.get();
+            return questMapper.toDto(quest);
+        }else{
+            throw new RuntimeException("Quest not found with id: " + id);
+        }
     }
 }
