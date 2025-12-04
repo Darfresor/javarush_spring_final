@@ -24,6 +24,10 @@ public class QuestService {
         this.questRepository = questRepository;
         this.questMapper = questMapper;
     }
+    public Optional<Quest> getQuestByIdWithStage(long questId){
+        return questRepository.findByIdWithStages(questId);
+    }
+
     public Page<QuestTo> getQuests(int page, int size){
         Pageable pageable = PageRequest.of(page, size);
         Page<Quest> questPage = questRepository.findAll(pageable);
