@@ -1,0 +1,28 @@
+package com.javarush.hibernate_final.ostapenko.hibernate.model.entity;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name = "stages", schema = "myapp")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+public class Stage {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "quests_id")
+    private Quest quest;
+    @Column(length = 255)
+    private String title;
+    @Column(length = 8_000)
+    private String description;
+    @Column(name = "img_path", length = 255)
+    private String imgPath;
+}

@@ -1,11 +1,12 @@
 USE myapp;
 
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS quests;
-DROP TABLE IF EXISTS stages;
-DROP TABLE IF EXISTS questions;
-DROP TABLE IF EXISTS quest_tree;
 DROP TABLE IF EXISTS answers;
+DROP TABLE IF EXISTS questions;
+DROP TABLE IF EXISTS stages;
+DROP TABLE IF EXISTS quests;
+
+
 
 
 CREATE TABLE users
@@ -73,6 +74,11 @@ CREATE TABLE answers
     CONSTRAINT fk_answers_questions
         FOREIGN KEY (question_id)
             REFERENCES questions(id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+    CONSTRAINT fk_answers_next_stage_id
+        FOREIGN KEY (next_stage_id)
+            REFERENCES stages(id)
             ON DELETE CASCADE
             ON UPDATE CASCADE
 );
