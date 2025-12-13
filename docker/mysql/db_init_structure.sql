@@ -39,6 +39,7 @@ CREATE TABLE quests
 CREATE TABLE stages
 (
     id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    is_quest_root   BOOLEAN         NOT NULL DEFAULT 0,
     quests_id       BIGINT          NOT NULL,
     title           VARCHAR(255)    NOT NULL,
     description     VARCHAR(8000)   NOT NULL,

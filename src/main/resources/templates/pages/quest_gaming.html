@@ -9,7 +9,12 @@
             <!-- Сетка карточек 2x2 -->
             <div class="row">
                     <div class="card h-100 shadow-sm">
-                        Тут будет основной игровой процесс
+                        <h1  th:text="${stage.title}">Сцена</h1>
+                        <p  th:utext="${stage.description}">Описание сцены</p>
+                        <img th:src="${'/images/' + (stage.imgPath != null ? stage.imgPath : 'quests/default_img.jpg')}"
+                             th:alt="${stage.title}"
+                             class="card-img-top"
+                             style="object-fit: contain; max-height: 100%; max-width: 100%;">
                         <!--
                         <div class="card-img-top-container" style="height: 200px; overflow: hidden; display: flex; justify-content: center; align-items: center; background-color: #f8f9fa;">
                             <img th:src="${'/images/' + (quest.imgPath != null ? quest.imgPath : 'quests/default_img.jpg')}"

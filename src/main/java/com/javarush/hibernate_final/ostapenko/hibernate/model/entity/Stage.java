@@ -16,6 +16,8 @@ public class Stage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="is_quest_root")
+    private boolean isQuestIdRoot;
     @ManyToOne
     @JoinColumn(name = "quests_id")
     private Quest quest;

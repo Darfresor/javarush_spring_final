@@ -1,21 +1,20 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.quests;
 
-import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Quest;
-import com.javarush.hibernate_final.ostapenko.hibernate.model.service.QuestService;
+import com.javarush.hibernate_final.ostapenko.hibernate.DTO.StageTo;
+import com.javarush.hibernate_final.ostapenko.hibernate.model.service.StageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Optional;
 
 @Controller
 @RequestMapping("ui/quests/quest")
 public class QuestUIGamingController {
-    private final QuestService questService;
+    private final StageService stageService;
 
-    public QuestUIGamingController(QuestService questService) {
-        this.questService = questService;
+    public QuestUIGamingController(StageService stageService) {
+        this.stageService = stageService;
     }
 
     @RequestMapping("/start")
@@ -24,11 +23,8 @@ public class QuestUIGamingController {
             @RequestParam
             Long id
     ){
-        Optional<Quest> optionalQuest = questService.getQuestByIdWithStage(id);
-        if(optionalQuest.isPresent()){
-           Quest  quest = optionalQuest.get();
-            System.out.println(quest.getStageList());
-        }
+        StageTo stage = stageService.getRootStageOfQuest(id);
+        model.addAttribute("stage",stage);
         return "pages/quest_gaming";
     }
 }

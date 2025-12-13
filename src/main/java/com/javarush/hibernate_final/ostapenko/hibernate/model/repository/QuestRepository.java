@@ -15,5 +15,8 @@ public interface QuestRepository extends JpaRepository<Quest, Long> {
     Optional<Quest> findById(Long id);
 
     @Query("SELECT  q FROM Quest q LEFT JOIN FETCH q.stageList WHERE q.id = :questId")
+    Optional<Quest> findByIdWithRootStage(Long id);
+
+    @Query("SELECT  q FROM Quest q LEFT JOIN FETCH q.stageList WHERE q.id = :questId")
     Optional<Quest> findByIdWithStages(Long questId);
 }

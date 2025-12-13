@@ -13,5 +13,6 @@ public interface QuestMapper {
 
     Quest toEntity(QuestTo questTo);
 
+
     List<QuestTo> toDtoList(List<Quest> quests);
 }
