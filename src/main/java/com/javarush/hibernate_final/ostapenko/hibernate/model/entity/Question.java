@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @Table(name = "questions", schema = "myapp")
 @Getter
@@ -18,4 +20,6 @@ public class Question {
     private Long id;
     @Column(length = 255)
     private String description;
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Answer> answerList;
 }

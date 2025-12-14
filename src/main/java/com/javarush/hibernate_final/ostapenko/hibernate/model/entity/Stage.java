@@ -6,15 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "stages", schema = "myapp")
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString(exclude = {"quest"})
 public class Stage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
