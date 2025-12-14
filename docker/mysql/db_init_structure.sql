@@ -46,6 +46,8 @@ CREATE TABLE stages
 (
     id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     is_quest_root   BOOLEAN         NOT NULL DEFAULT 0,
+    is_win          BOOLEAN         NOT NULL DEFAULT 0,
+    is_defeat       BOOLEAN         NOT NULL DEFAULT 0,
     quests_id       BIGINT          NOT NULL,
     question_id     BIGINT          NULL,
     title           VARCHAR(255)    NOT NULL,

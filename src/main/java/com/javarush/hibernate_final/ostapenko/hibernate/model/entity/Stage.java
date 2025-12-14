@@ -19,6 +19,10 @@ public class Stage {
     private Long id;
     @Column(name = "is_quest_root")
     private boolean isQuestIdRoot;
+    @Column(name="is_win")
+    private boolean win;
+    @Column(name ="is_defeat")
+    private boolean defeat;
     @ManyToOne
     @JoinColumn(name = "quests_id")
     private Quest quest;

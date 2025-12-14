@@ -3,6 +3,7 @@ package com.javarush.hibernate_final.ostapenko.hibernate.model.mapper;
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.StageTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Stage;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 

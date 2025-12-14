@@ -22,6 +22,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div th:if="${stage.win ==true}">
+                            <h2>Вы победили!</h2>>
+                        </div>
+                        <div th:if="${stage.defeat ==true}">
+                            <h2>Вы проиграли!</h2>
+                        </div>
+                        <div th:if="${stage.win ==true or stage.defeat ==true}">
+                            <a th:href="@{/ui/quests/quest/start(id=${stage.getQuest().getId()})}" class="btn btn-primary w-100">
+                                Начать заново?
+                            </a>
+                        </div>
                         <img th:src="${'/images/' + (stage.imgPath != null ? stage.imgPath : 'quests/default_img.jpg')}"
                              th:alt="${stage.title}"
                              class="card-img-top"
