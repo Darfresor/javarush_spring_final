@@ -23,7 +23,6 @@ public class StageService {
     }
 
     public StageTo getRootStageOfQuest(Long id){
-        //Optional<Stage> stageOptional = stageRepository.findByIdAndIsQuestIdRootTrue(id);
         Optional<Stage> stageOptional = stageRepository.findByIdAndIsQuestIdRootTrueWithAnswers(id);
         if(stageOptional.isPresent()){
             Stage stage = stageOptional.get();
@@ -32,5 +31,16 @@ public class StageService {
             throw new RuntimeException("Stage not found with id: " + id);
         }
     }
+    public StageTo getStageById(Long id){
+        Optional<Stage> stageOptional = stageRepository.findByIdWithAnswers(id);
+        if(stageOptional.isPresent()){
+            Stage stage = stageOptional.get();
+            return stageMapper.toDto(stage);
+        }else{
+            throw new RuntimeException("Stage not found with id: " + id);
+        }
+    }
+
+
 
 }

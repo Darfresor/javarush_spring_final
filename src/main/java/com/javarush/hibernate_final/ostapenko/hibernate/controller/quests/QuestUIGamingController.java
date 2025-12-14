@@ -18,12 +18,22 @@ public class QuestUIGamingController {
     }
 
     @RequestMapping("/start")
-    public String questGaming(
+    public String startGaming(
             Model model,
             @RequestParam
             Long id
     ){
         StageTo stage = stageService.getRootStageOfQuest(id);
+        model.addAttribute("stage",stage);;
+        return "pages/quest_gaming";
+    };
+    @RequestMapping("/gaming")
+    public String questGaming(
+            Model model,
+            @RequestParam
+            Long id
+    ){
+        StageTo stage = stageService.getStageById(id);
         model.addAttribute("stage",stage);
         System.out.println(stage);
         return "pages/quest_gaming";

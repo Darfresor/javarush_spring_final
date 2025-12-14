@@ -11,14 +11,17 @@
                     <div class="card h-100 shadow-sm">
                         <h1  th:text="${stage.title}">Сцена</h1>
                         <p  th:utext="${stage.description}">Описание сцены</p>
-                        <h2  th:text="${stage.getQuestion().getDescription()}">Вопросы</h2>
-                        <div th:each="answer, iter : ${stage.getQuestion().getAnswerList()}" class="col-lg-6 col-md-6 col-sm-12 mb-4">
-                            <a th:href="@{/ui/quests/quest/gaming(id=${answer.getStageId()})}" class="btn btn-primary w-100"
-                             th:text="${answer.description}">
-                                Ответ на вопрос
-                            </a>
+                        <div th:if="${stage.question?.description}">
+                            <h2  th:text="${stage.getQuestion().getDescription()}">Вопросы</h2>
+                            <div th:if="${not #lists.isEmpty(stage.question.answerList)}">
+                                <div th:each="answer, iter : ${stage.getQuestion().getAnswerList()}" class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                                    <a th:href="@{/ui/quests/quest/gaming(id=${answer.getStageId()})}" class="btn btn-primary w-100"
+                                       th:text="${answer.description}">
+                                        Ответ на вопрос
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-
                         <img th:src="${'/images/' + (stage.imgPath != null ? stage.imgPath : 'quests/default_img.jpg')}"
                              th:alt="${stage.title}"
                              class="card-img-top"
