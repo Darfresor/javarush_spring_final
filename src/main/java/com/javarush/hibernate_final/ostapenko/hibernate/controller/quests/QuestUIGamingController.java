@@ -25,6 +25,7 @@ public class QuestUIGamingController {
     ){
         StageTo stage = stageService.getRootStageOfQuest(id);
         model.addAttribute("stage",stage);
+        System.out.println(stage);
         return "pages/quest_gaming";
     }
 }

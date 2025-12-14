@@ -16,9 +16,6 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(name = "stage_id")
-    private Stage stage;
     @Column(length = 255)
     private String description;
 }

@@ -11,6 +11,7 @@
                     <div class="card h-100 shadow-sm">
                         <h1  th:text="${stage.title}">Сцена</h1>
                         <p  th:utext="${stage.description}">Описание сцены</p>
+                        <h2  th:text="${stage.getQuestion().getDescription()}">Вопросы</h2>
                         <img th:src="${'/images/' + (stage.imgPath != null ? stage.imgPath : 'quests/default_img.jpg')}"
                              th:alt="${stage.title}"
                              class="card-img-top"

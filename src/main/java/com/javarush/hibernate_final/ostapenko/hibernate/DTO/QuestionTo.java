@@ -6,17 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class StageTo {
+public class QuestionTo {
     private Long id;
-    private boolean isQuestIdRoot;
-    private QuestTo quest;
-    private String title;
     private String description;
-    private String imgPath;
-    private QuestionTo question;
 }

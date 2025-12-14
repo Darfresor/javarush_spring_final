@@ -2,8 +2,8 @@ USE myapp;
 
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS answers;
-DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS stages;
+DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS quests;
 
 
@@ -36,11 +36,18 @@ CREATE TABLE quests
 );
 
 
+CREATE TABLE questions
+(
+    id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    description     VARCHAR(255)    NOT NULL
+);
+
 CREATE TABLE stages
 (
     id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     is_quest_root   BOOLEAN         NOT NULL DEFAULT 0,
     quests_id       BIGINT          NOT NULL,
+    question_id     BIGINT          NULL,
     title           VARCHAR(255)    NOT NULL,
     description     VARCHAR(8000)   NOT NULL,
     img_path        VARCHAR(255)    NULL,
@@ -48,23 +55,14 @@ CREATE TABLE stages
         FOREIGN KEY (quests_id)
             REFERENCES quests(id)
             ON DELETE CASCADE
-            ON UPDATE CASCADE
-);
-
-
-CREATE TABLE questions
-(
-    id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    stage_id        BIGINT          NOT NULL,
-    description     VARCHAR(255)    NOT NULL,
-    CONSTRAINT uk_questions_stage_id
-        UNIQUE (stage_id),
-    CONSTRAINT fk_questions_stages
-        FOREIGN KEY (stage_id)
-            REFERENCES stages(id)
+            ON UPDATE CASCADE,
+    CONSTRAINT fk_stages_questions
+        FOREIGN KEY (question_id)
+            REFERENCES questions(id)
             ON DELETE CASCADE
             ON UPDATE CASCADE
 );
+
 
 CREATE TABLE answers
 (

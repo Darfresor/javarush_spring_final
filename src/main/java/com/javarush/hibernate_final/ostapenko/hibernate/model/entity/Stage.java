@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "stages", schema = "myapp")
 @Getter
@@ -16,7 +19,7 @@ public class Stage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="is_quest_root")
+    @Column(name = "is_quest_root")
     private boolean isQuestIdRoot;
     @ManyToOne
     @JoinColumn(name = "quests_id")
@@ -27,4 +30,7 @@ public class Stage {
     private String description;
     @Column(name = "img_path", length = 255)
     private String imgPath;
+    @OneToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
 }

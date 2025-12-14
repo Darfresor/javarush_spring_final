@@ -6,9 +6,13 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",
+        uses = {QuestMapper.class, QuestionMapper.class}
+)
 public interface StageMapper {
     StageTo toDto(Stage stage);
+
     List<StageTo> toDtoList(List<Stage> stageList);
+
     Stage toEntity(StageTo stageTo);
 }
