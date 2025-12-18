@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{layout/main :: page(title='Форум', appMain=~{::appMain}, appMainFluid=~{::appMainFluid}, activeMenuItem='forum')}">
+
+    <!-- Контент для container -->
+    <appMain>
+        <div class="container-fluid">
+            <!-- Сетка карточек 2x2 -->
+            <div class="row">
+                <div th:each="topic, iter : ${topics}" class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                    <a th:text="${topic.getName()}"  class="mb-2">
+                        Название топика
+                    </a>
+                </div>
+            </div>
+
+            <!-- Пагинация -->
+            <div class="pagination">
+                <!-- Кнопка "Назад" -->
+                <a th:if="${currentPage > 0}"
+                   th:href="@{/ui/forum/topics(page=${currentPage - 1})}"
+                   class="page-link">← Назад</a>
+
+                <!-- Номера страниц -->
+                <a th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
+                   th:href="@{/ui/forum/topics(page=${page})}"
+                   th:text="${page + 1}"
+                   th:class="${page == currentPage} ? 'page-link active' : 'page-link'">
+                </a>
+
+                <!-- Кнопка "Вперед" -->
+                <a th:if="${currentPage < totalPages - 1}"
+                   th:href="@{/ui/forum/topics(page=${currentPage + 1})}"
+                   class="page-link">Вперед →</a>
+            </div>
+
+        </div>
+    </appMain>
+
+</th:block>
