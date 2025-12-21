@@ -3,41 +3,143 @@
 
 <th:block th:replace="~{layout/main :: page(title='Форум', appMain=~{::appMain}, appMainFluid=~{::appMainFluid}, activeMenuItem='forum')}">
 
-    <!-- Контент для container -->
     <appMain>
         <div class="container-fluid">
-            <!-- Сетка карточек 2x2 -->
-            <div class="row">
-                <div th:each="topic, iter : ${topics}" class="col-lg-6 col-md-6 col-sm-12 mb-4">
-                    <a th:text="${topic.name}"  class="mb-2">
-                        Название топика
-                    </a>
-                    <p th:text="${topic.subtopicCount}"  class="mb-2">
-                        Кол-во обсуждение в теме
+            <!-- Заголовок страницы -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h1 class="h3 mb-2">
+                        <i class="bi bi-chat-left-text me-2"></i>Форум
+                    </h1>
+                    <p class="text-muted mb-0">
+                        Если не спросишь, никогда не узнаешь. Если знаешь, нужно лишь спросить.
                     </p>
                 </div>
             </div>
 
-            <!-- Пагинация -->
-            <div class="pagination">
-                <!-- Кнопка "Назад" -->
-                <a th:if="${currentPage > 0}"
-                   th:href="@{/ui/forum/topics(page=${currentPage - 1})}"
-                   class="page-link">← Назад</a>
+            <!-- Сетка карточек - ОДНА КАРТОЧКА НА СТРОКУ -->
+            <div class="row">
+                <div th:each="topic : ${topics}" class="col-12 mb-4">
+                    <div class="card h-100 border-primary">
+                        <div class="row g-0">
+                            <!-- Левая часть - иконка и заголовок -->
+                            <div class="col-md-3 d-flex align-items-center bg-primary bg-opacity-10 p-4">
+                                <div class="text-center w-100">
+                                    <div class="bg-primary text-white rounded-circle p-3 d-inline-block mb-3">
+                                        <i class="bi bi-chat-square-text fs-2"></i>
+                                    </div>
+                                    <h5 class="card-title mb-0">
+                                        <a th:href="@{'/ui/forum/topic/' + ${topic.id}}"
+                                           th:text="${topic.name}"
+                                           class="text-decoration-none text-dark">
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
 
-                <!-- Номера страниц -->
-                <a th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
-                   th:href="@{/ui/forum/topics(page=${page})}"
-                   th:text="${page + 1}"
-                   th:class="${page == currentPage} ? 'page-link active' : 'page-link'">
-                </a>
+                            <!-- Правая часть - информация -->
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <!-- Первая строка: количество обсуждений и статус -->
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="badge bg-info text-dark me-2">
+                                                <i class="bi bi-chat-left me-1"></i>
+                                                <span th:text="${topic.subtopicCount}">0</span> обсуждений
+                                            </span>
+                                            <span class="badge bg-success me-2">
+                                                <i class="bi bi-check-circle me-1"></i>Активен
+                                            </span>
+                                            <span class="badge bg-warning text-dark me-2">
+                                                <i class="bi bi-star me-1"></i>Популярное
+                                            </span>
+                                            <span class="badge bg-danger">
+                                                <i class="bi bi-lightning-charge me-1"></i>Акция
+                                            </span>
+                                        </div>
 
-                <!-- Кнопка "Вперед" -->
-                <a th:if="${currentPage < totalPages - 1}"
-                   th:href="@{/ui/forum/topics(page=${currentPage + 1})}"
-                   class="page-link">Вперед →</a>
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock me-1"></i>
+                                            Сегодня 14:32
+                                        </small>
+                                    </div>
+
+                                    <!-- Вторая строка: автор и кнопка -->
+                                    <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                        <div>
+                                            <small class="text-muted">
+                                                <i class="bi bi-person-circle me-1"></i>
+                                                Создатель: <span class="fw-semibold">Admin</span>
+                                            </small>
+                                        </div>
+
+                                        <a th:href="@{'/ui/forum/topic/' + ${topic.id}}"
+                                           class="btn btn-outline-primary">
+                                            <i class="bi bi-eye me-1"></i>Перейти в раздел
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Если топиков нет -->
+            <div th:if="${#lists.isEmpty(topics)}" class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body text-center py-5">
+                            <i class="bi bi-chat-square-text display-4 text-muted mb-3"></i>
+                            <h4 class="text-muted mb-3">Топиков пока нет</h4>
+                            <p class="text-muted mb-4">Будьте первым, кто создаст обсуждение!</p>
+                            <a href="#" class="btn btn-primary">
+                                <i class="bi bi-plus-circle me-1"></i>Создать топик
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пагинация Bootstrap -->
+            <nav th:if="${totalPages > 1}" aria-label="Навигация по страницам" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <!-- Кнопка "Назад" -->
+                    <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/ui/forum/topics(page=${currentPage - 1})}"
+                           th:unless="${currentPage == 0}"
+                           aria-label="Предыдущая">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        <span class="page-link" th:if="${currentPage == 0}" aria-hidden="true">&laquo;</span>
+                    </li>
+
+                    <!-- Все страницы (простой вариант) -->
+                    <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
+                        class="page-item" th:classappend="${pageNum == currentPage} ? 'active'">
+                        <a class="page-link" th:href="@{/ui/forum/topics(page=${pageNum})}"
+                           th:text="${pageNum + 1}"></a>
+                    </li>
+
+                    <!-- Кнопка "Вперед" -->
+                    <li class="page-item" th:classappend="${currentPage >= totalPages - 1} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/ui/forum/topics(page=${currentPage + 1})}"
+                           th:unless="${currentPage >= totalPages - 1}"
+                           aria-label="Следующая">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        <span class="page-link" th:if="${currentPage >= totalPages - 1}" aria-hidden="true">&raquo;</span>
+                    </li>
+                </ul>
+
+                <!-- Информация о странице -->
+                <div class="text-center text-muted mt-2 small">
+                    Страница <span th:text="${currentPage + 1}"></span> из <span th:text="${totalPages}"></span>
+                    · Всего топиков: <span th:text="${totalItems}"></span>
+                </div>
+            </nav>
         </div>
     </appMain>
 
