@@ -1,6 +1,7 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.model.service;
 
 
+import com.javarush.hibernate_final.ostapenko.hibernate.DTO.SubTopicWithCountTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.TopicWithCountTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.SubTopic;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.repository.SubTopicRepository;
@@ -22,10 +23,10 @@ public class SubTopicService {
     public SubTopicService(SubTopicRepository repository) {
         this.repository = repository;
     }
-    public Page<SubTopic> getSubTopics(Long topicId, int page, int size){
+    public Page<SubTopicWithCountTo> getSubTopics(Long topicId, int page, int size){
         Pageable pageable = PageRequest.of(page,size);
-        Page<SubTopic> subTopicPage = repository.findAllByTopicId(topicId, pageable);
-        List<SubTopic> subTopicList = subTopicPage.getContent();
+        Page<SubTopicWithCountTo> subTopicPage = repository.findAllByTopicIdWithCount(topicId, pageable);
+        List<SubTopicWithCountTo> subTopicList = subTopicPage.getContent();
         return new PageImpl<>(
                 subTopicList,
                 pageable,

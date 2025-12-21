@@ -1,5 +1,6 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.forum;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.DTO.SubTopicWithCountTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.TopicWithCountTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.SubTopic;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Topic;
@@ -51,7 +52,7 @@ public class ForumUIController {
             @RequestParam(defaultValue = "2")
             int size
     ){
-        Page<SubTopic> subTopicPage = subTopicService.getSubTopics(id, page, size);
+        Page<SubTopicWithCountTo> subTopicPage = subTopicService.getSubTopics(id, page, size);
         model.addAttribute("subTopicPage", subTopicPage);
         model.addAttribute("subTopics", subTopicPage.getContent()); // список топиков
         model.addAttribute("currentPage", subTopicPage.getNumber());

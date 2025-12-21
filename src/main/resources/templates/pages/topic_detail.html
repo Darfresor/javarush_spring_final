@@ -32,8 +32,13 @@
                             </h5>
 
                             <div class="text-muted small mb-3">
-                                ID родительского топика: <span th:text="${subTopic.topic.id}"></span>
+                                ID родительского топика: <span th:text="${subTopic.topicId}"></span>
                             </div>
+                            <div class="text-muted small mb-3">
+                                Кол-во постов в обсуждении: <span th:text="${subTopic.postsCount}"></span>
+                            </div>
+
+
 
                             <!-- Кнопка для перехода в подтопик -->
                             <div class="mt-3">
