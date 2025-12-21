@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{layout/main :: page(title='Форум', appMain=~{::appMain}, appMainFluid=~{::appMainFluid}, activeMenuItem='forum')}">
+
+    <appMain>
+        <div class="container-fluid">
+            <!-- Заголовок с ID топика -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h1 class="h3 mb-2">
+                        <i class="bi bi-chat-left-text me-2"></i>Топик #<span th:text="${id}">ID</span>
+                    </h1>
+                    <p class="text-muted mb-0">
+                        Обсуждения внутри топика
+                    </p>
+                </div>
+            </div>
+
+            <!-- Список подтопиков -->
+            <div class="row">
+                <div th:each="subTopic : ${subTopics}" class="col-12 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Заголовок как ссылка на детали подтопика -->
+                            <h5 class="card-title mb-2">
+                                <a th:href="@{/ui/forum/topic/{topicId}/subtopic/{subtopicId}(topicId=${id}, subtopicId=${subTopic.id})}"
+                                   th:text="${subTopic.name}"
+                                   class="text-decoration-none text-dark">
+                                    Название обсуждения
+                                </a>
+                            </h5>
+
+                            <div class="text-muted small mb-3">
+                                ID родительского топика: <span th:text="${subTopic.topic.id}"></span>
+                            </div>
+
+                            <!-- Кнопка для перехода в подтопик -->
+                            <div class="mt-3">
+                                <a th:href="@{/ui/forum/topic/{topicId}/subtopic/{subtopicId}(topicId=${id}, subtopicId=${subTopic.id})}"
+                                   class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-chat-dots me-1"></i>Смотреть посты
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Если нет подтопиков -->
+            <div th:if="${#lists.isEmpty(subTopics)}" class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body text-center py-5">
+                            <i class="bi bi-chat-square-text display-4 text-muted mb-3"></i>
+                            <h4 class="text-muted mb-3">Обсуждений пока нет</h4>
+                            <p class="text-muted mb-4">Будьте первым, кто создаст обсуждение в этом топике!</p>
+                            <a href="#" class="btn btn-primary">
+                                <i class="bi bi-plus-circle me-1"></i>Создать обсуждение
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пагинация -->
+            <div th:if="${totalPages > 1}" class="pagination mt-4">
+                <!-- Кнопка "Назад" -->
+                <a th:if="${currentPage > 0}"
+                   th:href="@{/ui/forum/topic/{id}(id=${id}, page=${currentPage - 1}, size=${subTopicPage.size})}"
+                   class="page-link">← Назад</a>
+
+                <!-- Номера страниц -->
+                <a th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
+                   th:href="@{/ui/forum/topic/{id}(id=${id}, page=${page}, size=${subTopicPage.size})}"
+                   th:text="${page + 1}"
+                   th:class="${page == currentPage} ? 'page-link active' : 'page-link'">
+                </a>
+
+                <!-- Кнопка "Вперед" -->
+                <a th:if="${currentPage < totalPages - 1}"
+                   th:href="@{/ui/forum/topic/{id}(id=${id}, page=${currentPage + 1}, size=${subTopicPage.size})}"
+                   class="page-link">Вперед →</a>
+            </div>
+
+            <!-- Информация о странице -->
+            <div class="text-center text-muted mt-2 small">
+                Страница <span th:text="${currentPage + 1}"></span> из <span th:text="${totalPages}"></span>
+                · Подтопиков: <span th:text="${totalItems}"></span>
+            </div>
+
+            <!-- Кнопка "Назад к списку топиков" -->
+            <div class="mt-4">
+                <a th:href="@{/ui/forum/topics}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>Назад к списку топиков
+                </a>
+            </div>
+        </div>
+    </appMain>
+
+</th:block>

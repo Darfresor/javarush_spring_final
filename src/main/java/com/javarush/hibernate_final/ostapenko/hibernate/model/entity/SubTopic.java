@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @Table(name = "sub_topics", schema = "myapp")
 @Getter
@@ -20,5 +22,8 @@ public class SubTopic {
     @JoinColumn(name = "topic_id")
     private Topic topic;
     private String name;
+
+    @OneToMany(mappedBy = "subTopic", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> postList;
 
 }
