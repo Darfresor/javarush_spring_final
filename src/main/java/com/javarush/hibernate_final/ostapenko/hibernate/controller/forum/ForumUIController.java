@@ -1,5 +1,6 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.forum;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.DTO.TopicWithCountTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Topic;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ForumUIController {
             @RequestParam(defaultValue = "10")
             int size
     ){
-        Page<Topic> topicPage = topicService.getTopics(page,size);
+        Page<TopicWithCountTo> topicPage = topicService.getTopicsWithCount(page,size);
         model.addAttribute("topicPage", topicPage);
         model.addAttribute("topics", topicPage.getContent()); // список топиков
         model.addAttribute("currentPage", topicPage.getNumber());

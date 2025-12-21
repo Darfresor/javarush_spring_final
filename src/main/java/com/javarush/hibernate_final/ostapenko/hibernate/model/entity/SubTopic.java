@@ -6,21 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 @Entity
-@Table(name="topics", schema = "myapp")
+@Table(name = "sub_topics", schema = "myapp")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-
-public class Topic {
+public class SubTopic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "topic_id")
+    private Topic topic;
     private String name;
 
-    @OneToMany(mappedBy = "topic",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SubTopic> subTopic;
 }

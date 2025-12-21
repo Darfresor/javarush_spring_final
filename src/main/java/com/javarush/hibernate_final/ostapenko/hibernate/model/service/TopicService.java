@@ -1,5 +1,6 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.model.service;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.DTO.TopicWithCountTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Topic;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,18 @@ public class TopicService {
                 topicPage.getTotalElements()
         );
     }
+
+    public Page<TopicWithCountTo> getTopicsWithCount(int page, int size){
+        Pageable pageable = PageRequest.of(page,size);
+        Page<TopicWithCountTo> topicPage = topicRepository.findAllTopicsWithCount(pageable);
+        List<TopicWithCountTo> topicList = topicPage.getContent();
+        return new PageImpl<>(
+                topicList,
+                pageable,
+                topicPage.getTotalElements()
+        );
+    }
+
+
+
 }
