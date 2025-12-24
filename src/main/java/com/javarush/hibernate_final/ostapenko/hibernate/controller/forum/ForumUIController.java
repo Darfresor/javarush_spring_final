@@ -2,8 +2,10 @@ package com.javarush.hibernate_final.ostapenko.hibernate.controller.forum;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.SubTopicWithCountTo;
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.TopicWithCountTo;
+import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Post;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.SubTopic;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Topic;
+import com.javarush.hibernate_final.ostapenko.hibernate.model.service.PostService;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.service.SubTopicService;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ForumUIController {
     private final TopicService topicService;
     private final SubTopicService subTopicService;
+    private final PostService postService;
 
     @Autowired
-    public ForumUIController(TopicService topicService, SubTopicService subTopicService) {
+    public ForumUIController(TopicService topicService, SubTopicService subTopicService, PostService postService) {
         this.topicService = topicService;
         this.subTopicService = subTopicService;
+        this.postService = postService;
     }
     @GetMapping("/topics")
     public String showTopics(
@@ -59,5 +63,23 @@ public class ForumUIController {
         model.addAttribute("totalPages", subTopicPage.getTotalPages());
         model.addAttribute("totalItems", subTopicPage.getTotalElements());
         return "pages/topic_detail";
+    }
+    @GetMapping("/subtopic/{subtopicId}")
+    public String showSubTopicDetail(
+            Model model,
+            @PathVariable
+            Long subtopicId,
+            @RequestParam(defaultValue = "0")
+            int page,
+            @RequestParam(defaultValue = "5")
+            int size
+    ){
+        Page<Post> postPage = postService.getPosts(subtopicId, page, size);
+        model.addAttribute("postPage", postPage);
+        model.addAttribute("posts", postPage.getContent()); // список топиков
+        model.addAttribute("currentPage", postPage.getNumber());
+        model.addAttribute("totalPages", postPage.getTotalPages());
+        model.addAttribute("totalItems", postPage.getTotalElements());
+        return "pages/sub_topic_detail";
     }
 }

@@ -24,7 +24,7 @@
                         <div class="card-body">
                             <!-- Заголовок как ссылка на детали подтопика -->
                             <h5 class="card-title mb-2">
-                                <a th:href="@{/ui/forum/topic/{topicId}/subtopic/{subtopicId}(topicId=${id}, subtopicId=${subTopic.id})}"
+                                <a th:href="@{/ui/forum/subtopic/{subtopicId}(subtopicId=${subTopic.id})}"
                                    th:text="${subTopic.name}"
                                    class="text-decoration-none text-dark">
                                     Название обсуждения
@@ -42,7 +42,7 @@
 
                             <!-- Кнопка для перехода в подтопик -->
                             <div class="mt-3">
-                                <a th:href="@{/ui/forum/topic/{topicId}/subtopic/{subtopicId}(topicId=${id}, subtopicId=${subTopic.id})}"
+                                <a th:href="@{/ui/forum/subtopic/{subtopicId}(subtopicId=${subTopic.id})}"
                                    class="btn btn-sm btn-outline-primary">
                                     <i class="bi bi-chat-dots me-1"></i>Смотреть посты
                                 </a>
