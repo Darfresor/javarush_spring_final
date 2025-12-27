@@ -5,8 +5,8 @@ DELETE
 FROM users;
 
 INSERT INTO users
-    (id, display_name, email, first_name, last_name, password, dt_add)
-VALUES (1, 'admin', 'admin@gmail.com', 'admin', 'admin', 'admin', CURRENT_TIMESTAMP);
+    (id, login_name, display_name, email, first_name, last_name, password, dt_add)
+VALUES (1, 'admin','Ктухлу', 'admin@gmail.com', 'admin', 'admin', 'admin', CURRENT_TIMESTAMP);
 
 DELETE
 FROM quests;

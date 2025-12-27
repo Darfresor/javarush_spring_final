@@ -8,7 +8,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "display_name",unique = true,length = 32)
+    @Column(name="login_name", unique = true, length = 32)
+    private String loginName;
+    @Column(name = "display_name",length = 32)
     private String displayName;
     @Column(unique = true, length = 128)
     private String email;

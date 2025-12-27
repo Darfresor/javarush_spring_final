@@ -1,4 +1,4 @@
-package com.javarush.hibernate_final.ostapenko.hibernate.model.service;
+package com.javarush.hibernate_final.ostapenko.hibernate.model.service.login;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.User;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.repository.UserRepository;
@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class UserService {
     private final UserRepository userRepository;
 
@@ -18,7 +17,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public Optional<User> findByLoginName(String login) {
+        return userRepository.findByLoginName(login);
     }
 }

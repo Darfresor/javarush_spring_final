@@ -14,14 +14,15 @@ CREATE TABLE users
 (
     id           BIGINT       NOT NULL AUTO_INCREMENT
         PRIMARY KEY,
+    login_name   VARCHAR(32)  NOT NULL,
     display_name VARCHAR(32)  NOT NULL,
     email        VARCHAR(128) NOT NULL,
     first_name   VARCHAR(32)  NOT NULL,
     last_name    VARCHAR(32)  NULL,
     password     VARCHAR(128) NOT NULL,
     dt_add       timestamp DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT uk_users_display_name
-        UNIQUE (display_name),
+    CONSTRAINT uk_users_login_name_name
+        UNIQUE (login_name),
     CONSTRAINT uk_users_email
         UNIQUE (email)
 );
