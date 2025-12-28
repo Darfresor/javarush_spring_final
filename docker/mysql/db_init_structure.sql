@@ -1,5 +1,7 @@
 USE myapp;
 
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS stages;
@@ -10,10 +12,18 @@ DROP TABLE IF EXISTS sub_topics;
 DROP TABLE IF EXISTS topics;
 
 
+CREATE TABLE roles
+(
+    id   BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    CONSTRAINT uk_role_name
+        UNIQUE (name)
+);
+
+
 CREATE TABLE users
 (
-    id           BIGINT       NOT NULL AUTO_INCREMENT
-        PRIMARY KEY,
+    id           BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
     login_name   VARCHAR(32)  NOT NULL,
     display_name VARCHAR(32)  NOT NULL,
     email        VARCHAR(128) NOT NULL,
@@ -21,11 +31,24 @@ CREATE TABLE users
     last_name    VARCHAR(32)  NULL,
     password     VARCHAR(128) NOT NULL,
     dt_add       timestamp DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT uk_users_login_name_name
+    CONSTRAINT uk_users_login_name
         UNIQUE (login_name),
     CONSTRAINT uk_users_email
         UNIQUE (email)
 );
+
+CREATE TABLE user_roles
+(
+    user_id BIGINT NOT NULL,
+    role_id BIGINT NOT NULL,
+    CONSTRAINT fk_user_roles_roles
+        FOREIGN KEY (role_id)
+            REFERENCES roles (id),
+    CONSTRAINT fk_user_roles_users
+        FOREIGN KEY (user_id)
+            REFERENCES users (id)
+);
+
 
 CREATE TABLE quests
 (

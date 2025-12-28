@@ -26,7 +26,9 @@ public class SecurityConfig {
                                 "/ui/home",
                                 "/ui/login",
                                 "/bootstrap/**",
-                                "/public"
+                                "/public",
+                                "/debug-pass",
+                                "/login"
                         ).permitAll()
                         .requestMatchers("/secure").hasRole("ADMIN")
 
@@ -52,6 +54,8 @@ public class SecurityConfig {
                 );
         return http.build();
     }
+
+    /*для ручной проверки пользователей из памяти
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails admin = User.builder()
@@ -59,15 +63,17 @@ public class SecurityConfig {
                 .password(passwordEncoder().encode("admin123"))
                 .roles("ADMIN")
                 .build();
+        //System.out.println(passwordEncoder().encode("admin123"));
 
         UserDetails user = User.builder()
                 .username("user")
                 .password(passwordEncoder().encode("user123"))
                 .roles("USER")
                 .build();
+        //System.out.println(passwordEncoder().encode("user123"));
 
         return new InMemoryUserDetailsManager(admin, user);
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -2,11 +2,31 @@ USE
     myapp;
 
 DELETE
+FROM roles;
+
+INSERT INTO roles
+(id,name)
+VALUES(1,'ROLE_ADMIN')
+,(2,'ROLE_USER');
+
+
+
+DELETE
 FROM users;
 
 INSERT INTO users
     (id, login_name, display_name, email, first_name, last_name, password, dt_add)
-VALUES (1, 'admin','Ктухлу', 'admin@gmail.com', 'admin', 'admin', 'admin', CURRENT_TIMESTAMP);
+VALUES (1, 'admin','Ктухлу', 'admin@gmail.com', 'admin', 'admin', '$2a$10$XPfxmqnK8P9GMOAy9NxrdO51b/p/oRmN2CnawdHtrGkhsQgoXNpqi', CURRENT_TIMESTAMP)
+    ,(2, 'user1','Петя Петров', 'user1@gmail.com', 'user', 'user', '$2a$10$NcdCpBj55hJDfHzh6KEokeEn.JTrk8IE4h5N0fCOMT2Nl4iBVgBMC', CURRENT_TIMESTAMP);
+
+DELETE
+FROM user_roles;
+
+INSERT INTO user_roles
+(user_id, role_id)
+VALUES(1,1)
+,(1,2)
+,(2,2);
 
 DELETE
 FROM quests;

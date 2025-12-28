@@ -2,6 +2,8 @@ package com.javarush.hibernate_final.ostapenko.hibernate.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users", schema = "myapp")
 public class User {
@@ -9,7 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name="login_name", unique = true, length = 32)
-    private String loginName;
+    private String userName;
     @Column(name = "display_name",length = 32)
     private String displayName;
     @Column(unique = true, length = 128)
@@ -20,6 +22,14 @@ public class User {
     private String lastName;
     @Column(length = 128)
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="user_roles",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    private Set<Role> roleSet;
 
     public User() {
     }
@@ -37,6 +47,22 @@ public class User {
                 "displayName='" + displayName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public Set<Role> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<Role> roleSet) {
+        this.roleSet = roleSet;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public long getId() {

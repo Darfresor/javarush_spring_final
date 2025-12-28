@@ -18,6 +18,6 @@ public class UserService {
     }
 
     public Optional<User> findByLoginName(String login) {
-        return userRepository.findByLoginName(login);
+        return userRepository.findByUserName(login);
     }
 }
