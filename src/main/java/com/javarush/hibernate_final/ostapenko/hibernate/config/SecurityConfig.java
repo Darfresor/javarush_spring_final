@@ -26,26 +26,25 @@ public class SecurityConfig {
                                 "/ui/home",
                                 "/ui/login",
                                 "/bootstrap/**",
-                                "/public",
-                                "/debug-pass",
-                                "/login"
+                                "/public"
                         ).permitAll()
                         .requestMatchers("/secure").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )
-                /*
                 .formLogin(form -> form
                         .loginPage("/ui/login")
                         .loginProcessingUrl("/perform_login") // куда отправлять форму
-                        .usernameParameter("username")   // имя поля из формы
-                        .passwordParameter("password")   // имя поля из формы
-                        .defaultSuccessUrl("/ui/quests", true) // после успеха
+                        .usernameParameter("username")   // имя поля пользователя из формы
+                        .passwordParameter("password")   // имя поля пароля из формы
+                        .defaultSuccessUrl("/ui/home", true) // после успеха
                         .failureUrl("/ui/login?error=true")  // при ошибке
                         .permitAll()
-                )*/
+                )
                 .formLogin(Customizer.withDefaults())
                 .logout(logout -> logout
+                        .logoutUrl("/perform_logout")
+                        .logoutSuccessUrl("/ui/login?logout=true")
                         .permitAll()
                 )
                 // CSRF включаем (для форм Spring Security)

@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/api")
+//@RestController
+//@RequestMapping("/api")
 public class LoginController {
     private final LoginService loginService;
 
-    @Autowired
+    //@Autowired
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
 
-    @PostMapping("/login")
+    //@PostMapping("/login")
     public ResponseEntity<?> login(
             @RequestParam("username") String username,
             @RequestParam("password") String password,

@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
+//@Service
 public class LoginService {
     private final UserService userService;
 
-    @Autowired
+    //@Autowired
     public LoginService(UserService userService) {
         this.userService = userService;
     }
