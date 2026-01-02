@@ -42,7 +42,13 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/perform_logout")
                         .logoutSuccessUrl("/ui/login?logout=true")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
                         .permitAll()
+                )
+                .rememberMe(rememberMe -> rememberMe
+                        .key("uniqueAndSecretKey")
+                        .tokenValiditySeconds(86400) // 24 часа
                 )
                 // CSRF включаем (для форм Spring Security)
                 .csrf(csrf -> csrf

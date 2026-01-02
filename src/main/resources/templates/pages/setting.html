@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout/main :: page(title='Настройки', appMain=~{::appMain}, appMainFluid=~{::appMainFluid}, activeMenuItem='settings')}">
+
+    <appMain>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <!-- Заголовок с хлебными крошками -->
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a th:href="@{/ui/home}">Главная</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a th:href="@{/ui/profile}">Профиль</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Настройки</li>
+                        </ol>
+                    </nav>
+
+                    <!-- Заголовок -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1><i class="bi bi-gear me-2"></i>Настройки</h1>
+                        <a th:href="@{/ui/profile}" class="btn btn-outline-primary">
+                            <i class="bi bi-arrow-left me-1"></i>Вернуться в профиль
+                        </a>
+                    </div>
+
+                    <!-- Карточка разработки -->
+                    <div class="card border-warning shadow">
+                        <div class="card-header bg-warning text-dark">
+                            <h4 class="mb-0"><i class="bi bi-tools me-2"></i>Раздел в разработке</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- Информация о разработке -->
+                            <div class="text-center py-5">
+                                <i class="bi bi-hourglass-split" style="font-size: 4rem; color: #ffc107;"></i>
+                                <h3 class="mt-4 text-warning">Данный раздел находится в разработке</h3>
+                                <p class="lead mt-3">
+                                    Мы работаем над созданием удобных настроек для вашего аккаунта.
+                                </p>
+                            </div>
+
+                            <hr>
+
+                            <!-- Что планируется -->
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5><i class="bi bi-list-check me-2"></i>Планируемые функции:</h5>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <div class="card h-100 border-0 shadow-sm">
+                                                <div class="card-body text-center">
+                                                    <i class="bi bi-bell" style="font-size: 2rem; color: #0d6efd;"></i>
+                                                    <h6 class="mt-2">Уведомления</h6>
+                                                    <p class="text-muted small">
+                                                        Настройка email и push-уведомлений
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card h-100 border-0 shadow-sm">
+                                                <div class="card-body text-center">
+                                                    <i class="bi bi-shield-lock" style="font-size: 2rem; color: #198754;"></i>
+                                                    <h6 class="mt-2">Безопасность</h6>
+                                                    <p class="text-muted small">
+                                                        Смена пароля, двухфакторная аутентификация
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card h-100 border-0 shadow-sm">
+                                                <div class="card-body text-center">
+                                                    <i class="bi bi-palette" style="font-size: 2rem; color: #6f42c1;"></i>
+                                                    <h6 class="mt-2">Внешний вид</h6>
+                                                    <p class="text-muted small">
+                                                        Темы, цвета, расположение элементов
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <div class="card h-100 border-0 shadow-sm">
+                                                <div class="card-body text-center">
+                                                    <i class="bi bi-globe" style="font-size: 2rem; color: #fd7e14;"></i>
+                                                    <h6 class="mt-2">Язык и регион</h6>
+                                                    <p class="text-muted small">
+                                                        Выбор языка, формата даты и времени
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card h-100 border-0 shadow-sm">
+                                                <div class="card-body text-center">
+                                                    <i class="bi bi-eye" style="font-size: 2rem; color: #dc3545;"></i>
+                                                    <h6 class="mt-2">Конфиденциальность</h6>
+                                                    <p class="text-muted small">
+                                                        Настройки видимости профиля
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card h-100 border-0 shadow-sm">
+                                                <div class="card-body text-center">
+                                                    <i class="bi bi-database" style="font-size: 2rem; color: #20c997;"></i>
+                                                    <h6 class="mt-2">Экспорт данных</h6>
+                                                    <p class="text-muted small">
+                                                        Экспорт вашей активности и данных
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- Прогресс разработки -->
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5><i class="bi bi-graph-up me-2"></i>Прогресс разработки</h5>
+                                    <div class="progress mb-3" style="height: 25px;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                             role="progressbar"
+                                             style="width: 35%;"
+                                             aria-valuenow="35"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100">
+                                            35% завершено
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-md-3">
+                                            <div class="border rounded p-2">
+                                                <small class="text-muted">Анализ</small>
+                                                <div class="mt-1">
+                                                    <i class="bi bi-check-circle-fill text-success"></i>
+                                                    <span class="ms-1">Завершено</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="border rounded p-2">
+                                                <small class="text-muted">Дизайн</small>
+                                                <div class="mt-1">
+                                                    <i class="bi bi-check-circle-fill text-success"></i>
+                                                    <span class="ms-1">Завершено</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="border rounded p-2">
+                                                <small class="text-muted">Разработка</small>
+                                                <div class="mt-1">
+                                                    <i class="bi bi-arrow-clockwise text-warning"></i>
+                                                    <span class="ms-1">В процессе</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="border rounded p-2">
+                                                <small class="text-muted">Тестирование</small>
+                                                <div class="mt-1">
+                                                    <i class="bi bi-clock text-secondary"></i>
+                                                    <span class="ms-1">Ожидает</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-light">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <small class="text-muted">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Ожидаемая дата завершения: <strong>Q2 2026</strong>
+                                    </small>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <button class="btn btn-outline-success" disabled>
+                                        <i class="bi bi-bell me-1"></i>Уведомить о готовности
+                                    </button>
+                                    <a href="mailto:support@myapp.com" class="btn btn-outline-primary ms-2">
+                                        <i class="bi bi-envelope me-1"></i>Предложить функцию
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Временные настройки (заглушка) -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="bi bi-sliders me-2"></i>Базовые настройки (доступны сейчас)</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Тема интерфейса</label>
+                                    <select class="form-select" disabled>
+                                        <option>Светлая (по умолчанию)</option>
+                                        <option>Темная</option>
+                                        <option>Автоматически</option>
+                                    </select>
+                                    <div class="form-text">Функция будет доступна после завершения разработки</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Язык интерфейса</label>
+                                    <select class="form-select" disabled>
+                                        <option>Русский</option>
+                                        <option>Английский</option>
+                                    </select>
+                                    <div class="form-text">Функция будет доступна после завершения разработки</div>
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="newsletter" disabled>
+                                    <label class="form-check-label" for="newsletter">Подписаться на рассылку новостей</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" disabled>
+                                    Сохранить изменения
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </appMain>
+
+</th:block>

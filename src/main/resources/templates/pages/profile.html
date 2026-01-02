@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:replace="~{layout/main :: page(title='Мой профиль', appMain=~{::appMain}, appMainFluid=~{::appMainFluid}, activeMenuItem='profile')}">
+
+    <appMain>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <!-- Заголовок -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1><i class="bi bi-person-circle me-2"></i>Мой профиль</h1>
+                        <a th:href="@{/ui/home}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i>На главную
+                        </a>
+                    </div>
+
+                    <!-- Карточка профиля -->
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>Основная информация</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- Аватар и имя -->
+                            <div class="row mb-4">
+                                <div class="col-md-3 text-center">
+                                    <img th:src="@{/images/common/default-avatar.jpg}"
+                                         class="img-thumbnail rounded-circle"
+                                         alt="Avatar"
+                                         width="120"
+                                         height="120">
+                                </div>
+                                <div class="col-md-9">
+                                    <h3 sec:authentication="name"></h3>
+                                    <p class="text-muted">
+                                        <i class="bi bi-person me-1"></i>
+                                        Имя пользователя
+                                    </p>
+                                    <p class="text-muted">
+                                        <i class="bi bi-calendar me-1"></i>
+                                        Аккаунт создан: <span th:text="${#dates.format(#dates.createNow(), 'dd.MM.yyyy')}"></span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- Роли и права -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5><i class="bi bi-shield-check me-2"></i>Роли и права доступа</h5>
+
+                                    <div class="alert alert-info">
+                                        <h6 class="alert-heading">
+                                            <i class="bi bi-key me-1"></i>Ваши роли:
+                                        </h6>
+                                        <ul class="mb-0" th:if="${#authentication?.principal?.authorities}">
+                                            <li th:each="authority : ${#authentication.principal.authorities}">
+                                                <span th:text="${authority.authority}"></span>
+                                            </li>
+                                        </ul>
+                                        <p th:unless="${#authentication?.principal?.authorities}" class="mb-0">
+                                            Роли не назначены
+                                        </p>
+                                    </div>
+
+                                    <!-- Проверка конкретных ролей -->
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <div class="card" th:classappend="${#authorization.expression('hasRole(''ADMIN'')') ? 'border-success' : 'border-secondary'}">
+                                                <div class="card-body text-center">
+                                                    <i class="bi bi-shield-lock" style="font-size: 2rem;"></i>
+                                                    <h6 class="mt-2">Администратор</h6>
+                                                    <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+                                                          class="badge bg-success">Доступно</span>
+                                                    <span th:unless="${#authorization.expression('hasRole(''ADMIN'')')}"
+                                                          class="badge bg-secondary">Не доступно</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card" th:classappend="${#authorization.expression('hasRole(''USER'')') ? 'border-primary' : 'border-secondary'}">
+                                                <div class="card-body text-center">
+                                                    <i class="bi bi-person" style="font-size: 2rem;"></i>
+                                                    <h6 class="mt-2">Пользователь</h6>
+                                                    <span th:if="${#authorization.expression('hasRole(''USER'')')}"
+                                                          class="badge bg-primary">Доступно</span>
+                                                    <span th:unless="${#authorization.expression('hasRole(''USER'')')}"
+                                                          class="badge bg-secondary">Не доступно</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- Статистика (заглушка) -->
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5><i class="bi bi-bar-chart me-2"></i>Статистика</h5>
+                                    <div class="alert alert-warning">
+                                        <i class="bi bi-hourglass-split me-2"></i>
+                                        Статистика будет доступна после добавления функционала квестов и форума.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-light">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <small class="text-muted">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Последний вход: <span th:text="${#dates.format(#dates.createNow(), 'dd.MM.yyyy HH:mm')}"></span>
+                                    </small>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <a th:href="@{/ui/settings}" class="btn btn-primary">
+                                        <i class="bi bi-gear me-1"></i>Перейти к настройкам
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </appMain>
+
+</th:block>
