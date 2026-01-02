@@ -130,6 +130,27 @@
     </dependencyManagement>
 
     <build>
+        <!-- ОБЩАЯ КОНФИГУРАЦИЯ РЕСУРСОВ ДЛЯ ВСЕХ ПРОФИЛЕЙ -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.html</include>
+                    <include>**/*.css</include>
+                    <include>**/*.js</include>
+                    <include>**/*.png</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.gif</include>
+                    <include>**/*.svg</include>
+                    <include>**/*.ico</include>
+                    <include>**/*.txt</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -184,6 +205,7 @@
                     </systemPropertyVariables>
                     <environmentVariables>
                         <SPRING_PROFILES_ACTIVE>${spring.profiles.active}</SPRING_PROFILES_ACTIVE>
+                        <!--suppress UnresolvedMavenProperty -->
                         <jasypt.encryptor.password>${jasypt.encryptor.password}</jasypt.encryptor.password>
                     </environmentVariables>
                 </configuration>
@@ -191,7 +213,7 @@
         </plugins>
     </build>
 
-    <!-- Maven профили для разных окружений -->
+    <!-- Maven профили для разных окружений - ТОЛЬКО СВОЙСТВА, без ресурсов -->
     <profiles>
         <profile>
             <id>local</id>
@@ -210,18 +232,6 @@
                 <spring.profiles.active>dev</spring.profiles.active>
                 <build.profile.id>dev</build.profile.id>
             </properties>
-            <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                        <filtering>true</filtering>
-                        <includes>
-                            <include>**/*.properties</include>
-                            <include>**/*.yml</include>
-                        </includes>
-                    </resource>
-                </resources>
-            </build>
         </profile>
 
         <profile>
@@ -230,23 +240,6 @@
                 <spring.profiles.active>prod</spring.profiles.active>
                 <build.profile.id>prod</build.profile.id>
             </properties>
-            <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                        <filtering>true</filtering>
-                        <includes>
-                            <include>**/*.properties</include>
-                            <include>**/*.yml</include>
-                        </includes>
-                        <!-- Исключаем dev конфиги из prod сборки -->
-                        <excludes>
-                            <exclude>**/application-dev.properties</exclude>
-                            <exclude>**/application-local.properties</exclude>
-                        </excludes>
-                    </resource>
-                </resources>
-            </build>
         </profile>
     </profiles>
 </project>
