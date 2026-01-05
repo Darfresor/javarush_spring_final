@@ -1,6 +1,5 @@
-package com.javarush.hibernate_final.ostapenko.hibernate.model.service.login;
+package com.javarush.hibernate_final.ostapenko.hibernate.security.service;
 
-import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Role;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.User;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.repository.UserRepository;
 import org.springframework.context.annotation.Profile;
