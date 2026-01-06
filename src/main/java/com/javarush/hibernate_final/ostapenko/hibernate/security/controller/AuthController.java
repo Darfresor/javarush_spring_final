@@ -1,9 +1,10 @@
-package com.javarush.hibernate_final.ostapenko.hibernate.controller.auth;
-
+package com.javarush.hibernate_final.ostapenko.hibernate.security.controller;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.security.dto.AuthRequest;
 import com.javarush.hibernate_final.ostapenko.hibernate.security.dto.AuthResponse;
-import com.javarush.hibernate_final.ostapenko.hibernate.security.jwt.JwtTokenUtil;
+import com.javarush.hibernate_final.ostapenko.hibernate.security.jwt.JwtService;
+import jakarta.servlet.http.Cookie; // ← Добавьте
+import jakarta.servlet.http.HttpServletResponse; // ← Убедитесь, что есть
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,10 +20,11 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtService jwtService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest,
+                                   HttpServletResponse response) { // ← Добавьте параметр
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -32,7 +34,15 @@ public class AuthController {
             );
 
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String token = jwtTokenUtil.generateToken(userDetails);
+            String token = jwtService.generateToken(userDetails);
+
+            // Устанавливаем Cookie
+            Cookie jwtCookie = new Cookie("jwtToken", token);
+            jwtCookie.setHttpOnly(true); // Защита от XSS
+            jwtCookie.setSecure(false); // Поставьте true в production с HTTPS
+            jwtCookie.setPath("/"); // Доступно для всего сайта
+            jwtCookie.setMaxAge(24 * 60 * 60); // 24 часа в секундах
+            response.addCookie(jwtCookie);
 
             return ResponseEntity.ok(new AuthResponse(token));
         } catch (Exception e) {
@@ -41,9 +51,15 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
-        // Для JWT logout обычно делается на клиенте (удаление токена)
-        // Серверная часть может только добавить токен в blacklist
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        // Удаляем Cookie
+        Cookie jwtCookie = new Cookie("jwtToken", null);
+        jwtCookie.setHttpOnly(true);
+        jwtCookie.setSecure(false);
+        jwtCookie.setPath("/");
+        jwtCookie.setMaxAge(0); // Немедленное удаление
+        response.addCookie(jwtCookie);
+
         return ResponseEntity.ok("Logged out successfully");
     }
 }

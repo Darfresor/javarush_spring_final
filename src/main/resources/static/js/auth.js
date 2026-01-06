@@ -1,18 +1,24 @@
-// auth.js - функции для работы с JWT аутентификацией
+// auth.js - упрощенная версия для Cookie
 
-// Константы
-const TOKEN_KEY = 'jwtToken';
-const API_AUTH_URL = '/api/auth/login';
+console.log('🔐 Auth.js loaded (Cookie version)');
 
-/**
- * Выполняет вход в систему
- * @param {string} username - логин пользователя
- * @param {string} password - пароль пользователя
- * @returns {Promise} - промис с результатом
- */
+const COOKIE_NAME = 'jwtToken';
+
+// Функция для получения токена из Cookie
+function getTokenFromCookie() {
+    const match = document.cookie.match(new RegExp('(^| )' + COOKIE_NAME + '=([^;]+)'));
+    return match ? match[2] : null;
+}
+
+// Функция для проверки авторизации
+function isAuthenticated() {
+    return getTokenFromCookie() !== null;
+}
+
+// Login функция
 async function login(username, password) {
     try {
-        const response = await fetch(API_AUTH_URL, {
+        const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +26,8 @@ async function login(username, password) {
             body: JSON.stringify({
                 username: username,
                 password: password
-            })
+            }),
+            credentials: 'include' // Важно для Cookie!
         });
 
         if (!response.ok) {
@@ -28,9 +35,11 @@ async function login(username, password) {
         }
 
         const data = await response.json();
+        console.log('✅ Login successful, token:', data.token.substring(0, 20) + '...');
 
-        // Сохраняем токен в localStorage
-        localStorage.setItem(TOKEN_KEY, data.token);
+        // Cookie уже установлена сервером
+        // Можно сохранить и в localStorage для совместимости
+        localStorage.setItem('jwtToken', data.token);
 
         return {
             success: true,
@@ -45,101 +54,104 @@ async function login(username, password) {
     }
 }
 
-/**
- * Выполняет выход из системы
- */
+// Logout функция
 function logout() {
-    // Удаляем токен из localStorage
-    localStorage.removeItem(TOKEN_KEY);
+    // Вызываем серверный logout
+    fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+    }).finally(() => {
+        // Очищаем localStorage
+        localStorage.removeItem('jwtToken');
 
-    // Перенаправляем на страницу логина
-    window.location.href = '/ui/login?logout=true';
-}
-
-/**
- * Проверяет, авторизован ли пользователь
- * @returns {boolean} - true если есть токен
- */
-function isAuthenticated() {
-    return localStorage.getItem(TOKEN_KEY) !== null;
-}
-
-/**
- * Получает токен из localStorage
- * @returns {string|null} - токен или null
- */
-function getToken() {
-    return localStorage.getItem(TOKEN_KEY);
-}
-
-/**
- * Добавляет заголовок Authorization к запросу
- * @param {Object} headers - исходные заголовки
- * @returns {Object} - обновленные заголовки
- */
-function addAuthHeader(headers = {}) {
-    const token = getToken();
-    if (token) {
-        return {
-            ...headers,
-            'Authorization': `Bearer ${token}`
-        };
-    }
-    return headers;
-}
-
-/**
- * Выполняет защищенный запрос с токеном
- * @param {string} url - URL запроса
- * @param {Object} options - параметры запроса
- * @returns {Promise} - промис с результатом
- */
-async function authFetch(url, options = {}) {
-    const authHeaders = addAuthHeader(options.headers || {});
-
-    const response = await fetch(url, {
-        ...options,
-        headers: authHeaders
+        // Перенаправляем на страницу логина
+        window.location.href = '/ui/login?logout=true';
     });
-
-    // Если 401 - токен невалиден
-    if (response.status === 401) {
-        logout();
-        throw new Error('Требуется повторная авторизация');
-    }
-
-    return response;
 }
 
-/**
- * Проверяет авторизацию при загрузке страницы
- */
+// Перехватчик для fetch запросов
+(function() {
+    const originalFetch = window.fetch;
+
+    window.fetch = async function(...args) {
+        const [url, options = {}] = args;
+
+        // Проверяем, является ли URL публичным
+        const isPublic = isPublicUrl(url);
+
+        if (!isPublic) {
+            // Получаем токен из Cookie
+            const token = getTokenFromCookie();
+
+            if (token) {
+                const newOptions = {
+                    ...options,
+                    headers: {
+                        ...options.headers,
+                        'Authorization': `Bearer ${token}`
+                    },
+                    credentials: 'include'
+                };
+
+                const response = await originalFetch(url, newOptions);
+
+                // Проверяем на 401
+                if (response.status === 401) {
+                    console.log('Token expired, redirecting to login');
+                    window.location.href = '/ui/login?sessionExpired=true';
+                    throw new Error('Session expired');
+                }
+
+                return response;
+            }
+        }
+
+        // Для публичных URL или если нет токена
+        return originalFetch(url, options);
+    };
+
+    function isPublicUrl(url) {
+        const publicUrls = [
+            '/api/auth/',
+            '/ui/login',
+            '/bootstrap/',
+            '/jquery/',
+            '/js/',
+            '/css/',
+            '/images/'
+        ];
+        return publicUrls.some(publicUrl => url.includes(publicUrl));
+    }
+})();
+
+// Проверка авторизации при загрузке страницы
 function checkAuthOnPageLoad() {
     const currentPath = window.location.pathname;
+    const publicPages = ['/ui/login', '/ui/register', '/', '/public'];
+    const isPublicPage = publicPages.some(page => currentPath.includes(page));
 
-    // Если на странице логина и уже авторизован - редирект на главную
+    // Если на странице логина и уже авторизован - редирект
     if (currentPath.includes('/ui/login') && isAuthenticated()) {
         window.location.href = '/ui/home';
         return;
     }
 
-    // Если не на странице логина и не авторизован - редирект на логин
-    // Исключение: публичные страницы
-    const publicPages = ['/ui/login', '/', '/public'];
-    const isPublicPage = publicPages.some(page => currentPath.includes(page));
-
+    // Если не публичная и не авторизован - на логин
     if (!isPublicPage && !isAuthenticated()) {
         window.location.href = '/ui/login';
     }
 }
 
-// Экспортируем функции для использования
+// Экспорт функций
 window.Auth = {
     login,
     logout,
     isAuthenticated,
-    getToken,
-    addAuthHeader,
-    authFetch,
+    getTokenFromCookie,
     checkAuthOnPageLoad
 };
+
+// Автопроверка при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(checkAuthOnPageLoad, 100);
+});

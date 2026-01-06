@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{layout/main :: page(title='Мой профиль', appMain=~{::appMain}, appMainFluid=~{::appMainFluid}, activeMenuItem='profile')}">
 
     <appMain>
@@ -31,7 +30,8 @@
                                          height="120">
                                 </div>
                                 <div class="col-md-9">
-                                    <h3 sec:authentication="name"></h3>
+                                    <!-- Используем #jwt.getUsername() -->
+                                    <h3 th:text="${#jwt.getUsername()}">Имя пользователя</h3>
                                     <p class="text-muted">
                                         <i class="bi bi-person me-1"></i>
                                         Имя пользователя
@@ -54,12 +54,13 @@
                                         <h6 class="alert-heading">
                                             <i class="bi bi-key me-1"></i>Ваши роли:
                                         </h6>
-                                        <ul class="mb-0" th:if="${#authentication?.principal?.authorities}">
-                                            <li th:each="authority : ${#authentication.principal.authorities}">
-                                                <span th:text="${authority.authority}"></span>
+                                        <!-- ИСПРАВЛЕНО: используем #jwt.getRoles() вместо #authentication -->
+                                        <ul class="mb-0" th:if="${not #jwt.getRoles().empty}">
+                                            <li th:each="role : ${#jwt.getRoles()}">
+                                                <span th:text="${role}"></span>
                                             </li>
                                         </ul>
-                                        <p th:unless="${#authentication?.principal?.authorities}" class="mb-0">
+                                        <p th:if="${#jwt.getRoles().empty}" class="mb-0">
                                             Роли не назначены
                                         </p>
                                     </div>
@@ -67,25 +68,25 @@
                                     <!-- Проверка конкретных ролей -->
                                     <div class="row mt-3">
                                         <div class="col-md-6">
-                                            <div class="card" th:classappend="${#authorization.expression('hasRole(''ADMIN'')') ? 'border-success' : 'border-secondary'}">
+                                            <div class="card" th:classappend="${#jwt.hasRole('ADMIN')} ? 'border-success' : 'border-secondary'">
                                                 <div class="card-body text-center">
                                                     <i class="bi bi-shield-lock" style="font-size: 2rem;"></i>
                                                     <h6 class="mt-2">Администратор</h6>
-                                                    <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+                                                    <span th:if="${#jwt.hasRole('ADMIN')}"
                                                           class="badge bg-success">Доступно</span>
-                                                    <span th:unless="${#authorization.expression('hasRole(''ADMIN'')')}"
+                                                    <span th:unless="${#jwt.hasRole('ADMIN')}"
                                                           class="badge bg-secondary">Не доступно</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="card" th:classappend="${#authorization.expression('hasRole(''USER'')') ? 'border-primary' : 'border-secondary'}">
+                                            <div class="card" th:classappend="${#jwt.hasRole('USER')} ? 'border-primary' : 'border-secondary'">
                                                 <div class="card-body text-center">
                                                     <i class="bi bi-person" style="font-size: 2rem;"></i>
                                                     <h6 class="mt-2">Пользователь</h6>
-                                                    <span th:if="${#authorization.expression('hasRole(''USER'')')}"
+                                                    <span th:if="${#jwt.hasRole('USER')}"
                                                           class="badge bg-primary">Доступно</span>
-                                                    <span th:unless="${#authorization.expression('hasRole(''USER'')')}"
+                                                    <span th:unless="${#jwt.hasRole('USER')}"
                                                           class="badge bg-secondary">Не доступно</span>
                                                 </div>
                                             </div>
@@ -116,8 +117,14 @@
                                     </small>
                                 </div>
                                 <div class="col-md-6 text-end">
-                                    <a th:href="@{/ui/settings}" class="btn btn-primary">
+                                    <!-- ДОБАВЛЕНО: проверка аутентификации для кнопки настроек -->
+                                    <a th:href="@{/ui/settings}" class="btn btn-primary"
+                                       th:if="${#jwt.isAuthenticated()}">
                                         <i class="bi bi-gear me-1"></i>Перейти к настройкам
+                                    </a>
+                                    <a th:href="@{/ui/login}" class="btn btn-outline-primary"
+                                       th:unless="${#jwt.isAuthenticated()}">
+                                        <i class="bi bi-box-arrow-in-right me-1"></i>Войти для настроек
                                     </a>
                                 </div>
                             </div>
