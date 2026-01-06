@@ -2,6 +2,7 @@ package com.javarush.hibernate_final.ostapenko.hibernate.security.service;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.User;
 import com.javarush.hibernate_final.ostapenko.hibernate.model.repository.UserRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,7 +16,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Profile("!local")  // АКТИВЕН для ВСЕХ профилей, КРОМЕ local
+@Profile("!local") // АКТИВЕН для ВСЕХ профилей, КРОМЕ local
+@Primary
 public class CustomUserDetailService implements UserDetailsService {
     private final UserRepository userRepository;
 

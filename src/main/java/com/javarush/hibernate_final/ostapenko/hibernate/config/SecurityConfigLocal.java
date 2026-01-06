@@ -1,9 +1,11 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.config;
 
 
+import com.javarush.hibernate_final.ostapenko.hibernate.security.jwt.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,13 +22,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @Profile("local")
 @EnableWebSecurity
 public class SecurityConfigLocal {
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder; // Бин из общей конфигурации
+
     @Autowired
-    public SecurityConfigLocal(PasswordEncoder passwordEncoder) {
+    public SecurityConfigLocal(
+            PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
+
     @Bean
+    @Primary
     public UserDetailsService userDetailsService() {
         UserDetails admin = User.builder()
                 .username("admin")
