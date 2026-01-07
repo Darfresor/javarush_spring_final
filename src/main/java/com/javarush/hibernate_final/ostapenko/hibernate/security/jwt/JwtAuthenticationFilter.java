@@ -6,27 +6,24 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtService jwtService;
-
-    @Autowired
-    @Lazy
-    private UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -38,47 +35,48 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
 
             if (jwt != null && StringUtils.hasText(jwt)) {
-                String username = jwtService.extractUsername(jwt);
+                if (jwtService.validateToken(jwt)) { // Изменили метод валидации
+                    String username = jwtService.extractUsername(jwt);
+                    List<String> roles = jwtService.extractRoles(jwt);
 
-                if (StringUtils.hasText(username)) {
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                    if (StringUtils.hasText(username)) {
+                        // Создаем authorities из ролей
+                        List<GrantedAuthority> authorities = roles.stream()
+                                .map(role -> new SimpleGrantedAuthority(role))
+                                .collect(Collectors.toList());
 
-                    if (jwtService.validateToken(jwt, userDetails)) {
-                        // ✅ КРИТИЧЕСКИ: Всегда создаем новый контекст для STATELESS
-                        SecurityContext context = SecurityContextHolder.createEmptyContext();
-
+                        // Создаем аутентификацию
                         UsernamePasswordAuthenticationToken authentication =
                                 new UsernamePasswordAuthenticationToken(
-                                        userDetails,        // principal
-                                        null,               // credentials (не нужно для JWT)
-                                        userDetails.getAuthorities() // authorities
+                                        username,           // principal как строка
+                                        null,               // credentials
+                                        authorities         // authorities из токена
                                 );
 
-
+                        // Устанавливаем аутентификацию в контекст
+                        SecurityContext context = SecurityContextHolder.createEmptyContext();
                         context.setAuthentication(authentication);
                         SecurityContextHolder.setContext(context);
+
+                        logger.debug("✅ JWT authenticated for user: " + username);
                     } else {
-                        // Токен невалиден - очищаем контекст
                         SecurityContextHolder.clearContext();
-                        logger.debug("❌ JWT token invalid, clearing context");
+                        logger.debug("❌ Could not extract username from JWT");
                     }
                 } else {
-                    // Не удалось извлечь username - очищаем контекст
                     SecurityContextHolder.clearContext();
+                    logger.debug("❌ JWT token invalid");
                 }
             } else {
-                // Нет токена - очищаем контекст
                 SecurityContextHolder.clearContext();
                 logger.debug("⚠️ No JWT token found");
             }
 
         } catch (Exception e) {
-            // Любая ошибка - очищаем контекст
             SecurityContextHolder.clearContext();
 
-            // Можно логировать подробнее для отладки
             if (logger.isDebugEnabled()) {
-                logger.debug("JWT authentication exception", e);
+                logger.debug("JWT authentication exception: " + e.getMessage(), e);
             }
         }
 
@@ -86,7 +84,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String parseJwt(HttpServletRequest request) {
-        // 1. Пробуем из заголовка Authorization (для AJAX/API запросов)
+        // 1. Пробуем из заголовка Authorization
         String headerAuth = request.getHeader("Authorization");
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
             String token = headerAuth.substring(7);
@@ -94,24 +92,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return token;
         }
 
-        // 2. Пробуем из Cookie (для обычных браузерных переходов)
+        // 2. Пробуем из Cookie
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if ("jwtToken".equals(cookie.getName())) {
                     String token = cookie.getValue();
-                    return token;
+                    if (StringUtils.hasText(token)) {
+                        logger.debug("Found JWT in cookie");
+                        return token;
+                    }
                 }
             }
         }
 
-        logger.debug("No JWT found in request");
         return null;
     }
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        // Можно исключить публичные эндпоинты для оптимизации
         String path = request.getServletPath();
 
         return path.startsWith("/css/") ||
