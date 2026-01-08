@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.javarush.hibernate_final.ostapenko</groupId>
-    <artifactId>hibernate</artifactId>
+    <groupId>com.javarush.spring_final.ostapenko</groupId>
+    <artifactId>spring</artifactId>
     <version>0.0.1</version>
-    <name>hibernate</name>
+    <name>spring</name>
 
     <properties>
         <java.version>21</java.version>
