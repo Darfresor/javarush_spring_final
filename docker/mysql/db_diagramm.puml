@@ -1,0 +1,138 @@
+@startuml
+' Настройки диаграммы
+skinparam linetype ortho
+skinparam packageStyle rectangle
+hide circle
+hide empty members
+skinparam roundcorner 10
+
+' Цвета для разных типов сущностей
+skinparam class {
+    BackgroundColor<<Core>> #E6F3FF
+    BackgroundColor<<User>> #FFF0E6
+    BackgroundColor<<Quest>> #F0F8FF
+    BackgroundColor<<Forum>> #F0FFF0
+    BackgroundColor<<Association>> #F5F5F5
+    BorderColor #333333
+    ArrowColor #333333
+}
+
+' Определение типов
+class Roles <<Core>> {
+    + id : BIGINT <<PK>>
+    + name : VARCHAR(50)
+    --
+    + uk_role_name(name) <<UNIQUE>>
+}
+
+class Users <<User>> {
+    + id : BIGINT <<PK>>
+    + login_name : VARCHAR(32)
+    + display_name : VARCHAR(32)
+    + email : VARCHAR(128)
+    + first_name : VARCHAR(32)
+    + last_name : VARCHAR(32)
+    + password : VARCHAR(128)
+    + dt_add : TIMESTAMP
+    --
+    + uk_users_login_name(login_name) <<UNIQUE>>
+    + uk_users_email(email) <<UNIQUE>>
+}
+
+class UserRoles <<Association>> {
+    + user_id : BIGINT <<PK, FK>>
+    + role_id : BIGINT <<PK, FK>>
+}
+
+class Quests <<Quest>> {
+    + id : BIGINT <<PK>>
+    + quest_name : VARCHAR(100)
+    + description : VARCHAR(8000)
+    + img_path : VARCHAR(255)
+    + is_new : TINYINT(1)
+    + dt_add : TIMESTAMP
+}
+
+class Questions <<Quest>> {
+    + id : BIGINT <<PK>>
+    + description : VARCHAR(255)
+}
+
+class Stages <<Quest>> {
+    + id : BIGINT <<PK>>
+    + is_quest_root : BOOLEAN
+    + is_win : BOOLEAN
+    + is_defeat : BOOLEAN
+    + quests_id : BIGINT <<FK>>
+    + question_id : BIGINT <<FK>>
+    + title : VARCHAR(255)
+    + description : VARCHAR(8000)
+    + img_path : VARCHAR(255)
+}
+
+class Answers <<Quest>> {
+    + id : BIGINT <<PK>>
+    + question_id : BIGINT <<FK>>
+    + next_stage_id : BIGINT <<FK>>
+    + description : VARCHAR(255)
+}
+
+class Topics <<Forum>> {
+    + id : BIGINT <<PK>>
+    + name : VARCHAR(255)
+    + dt_add : TIMESTAMP
+}
+
+class SubTopics <<Forum>> {
+    + id : BIGINT <<PK>>
+    + topic_id : BIGINT <<FK>>
+    + name : VARCHAR(100)
+    + dt_add : TIMESTAMP
+}
+
+class Posts <<Forum>> {
+    + id : BIGINT <<PK>>
+    + sub_topic_id : BIGINT <<FK>>
+    + content : TEXT
+    + dt_add : TIMESTAMP
+}
+
+' Связи между таблицами
+
+' Пользователи и роли (многие-ко-многим)
+Users "1" -- "*" UserRoles
+UserRoles "*" -- "1" Roles
+
+' Система квестов
+Quests "1" -- "*" Stages : "contains"
+Stages "*" -- "0..1" Questions : "has"
+Questions "1" -- "*" Answers : "has answers"
+
+' Связь ответов со следующими этапами
+Answers "0..1" -- "*" Stages : "leads to\n(next_stage_id)"
+
+' Система форума
+Topics "1" -- "*" SubTopics : "has subtopics"
+SubTopics "1" -- "*" Posts : "contains posts"
+
+' Нотации для внешних ключей с ON DELETE CASCADE
+note top of Stages : "FK: quests_id → Quests.id\nON DELETE CASCADE"
+note top of Stages : "FK: question_id → Questions.id\nON DELETE CASCADE"
+note top of Answers : "FK: question_id → Questions.id\nON DELETE CASCADE"
+note top of Answers : "FK: next_stage_id → Stages.id\nON DELETE CASCADE"
+note top of SubTopics : "FK: topic_id → Topics.id\nON DELETE CASCADE"
+note top of Posts : "FK: sub_topic_id → SubTopics.id\nON DELETE CASCADE"
+
+' Легенда
+legend right
+    <<User>> - Пользователи и роли
+    <<Quest>> - Система квестов
+    <<Forum>> - Форум/контент
+    <<Core>> - Основные сущности
+    <<Association>> - Ассоциативные таблицы
+    <<PK>> - Первичный ключ
+    <<FK>> - Внешний ключ
+    ON DELETE CASCADE - Каскадное удаление
+end legend
+
+@enduml
