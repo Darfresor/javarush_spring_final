@@ -36,7 +36,12 @@
     <!-- Footer -->
     <div th:replace="~{layout/footer :: footer}"></div>
     </body>
-    <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <!-- 1. jQuery -->
     <script th:src="@{/jquery/js/jquery.min.js}"></script>
-    <script th:src="@{/js/auth.js}"></script> <!-- подключен скрипт для авторизации -->
+    <!-- 2. DataTables -->
+    <script th:src="@{/webjars/datatables/2.3.6/js/dataTables.min.js}"></script>
+    <!-- 3. Bootstrap -->
+    <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <!-- 4. Auth -->
+    <script th:src="@{/js/auth.js}"></script>
 </html>

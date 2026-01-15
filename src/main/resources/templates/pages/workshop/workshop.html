@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{layout/main :: page(title='Мастерская квестов',
+                                           appMain=~{::appMain},
+                                           appMainFluid=~{::appMainFluid},
+                                           activeMenuItem='workshop')}">
+
+    <appMain>
+        <h2 class="mb-4">Мастерская квестов</h2>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <button id="refreshBtn" class="btn btn-primary">
+                        Обновить данные
+                    </button>
+                    <span id="loading" style="display: none;" class="ms-2">
+                        <span class="spinner-border spinner-border-sm"></span> Загрузка...
+                    </span>
+                </div>
+
+                <!-- Простая таблица -->
+                <table id="questsTable" class="table table-striped" style="width:100%">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Описание</th>
+                        <th>Статус</th>
+                        <th>Этапов</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Данные загружаются через JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </appMain>
+
+</th:block>
+
+<!-- Простой скрипт -->
+<script th:inline="javascript">
+    $(document).ready(function() {
+        console.log('Инициализация мастерской квестов');
+
+        // Инициализация DataTable
+        var table = $('#questsTable').DataTable({
+            ajax: {
+                url: /*[[@{/ui/workshop/data}]]*/,
+                type: 'GET',
+                dataSrc: '',
+                beforeSend: function() {
+                    $('#loading').show();
+                },
+                complete: function() {
+                    $('#loading').hide();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Ошибка загрузки данных:', error);
+                    alert('Ошибка загрузки данных: ' + error);
+                }
+            },
+            columns: [
+                {
+                    data: 'id',
+                    className: 'text-center'
+                },
+                {
+                    data: 'questName'
+                },
+                {
+                    data: 'description'
+                },
+                {
+                    data: 'new',
+                    className: 'text-center',
+                    render: function(data) {
+                        // Используем isNew из DTO
+                        if (data === true || data === 'true') {
+                            return '<span class="badge bg-success">Новый</span>';
+                        } else {
+                            return '<span class="badge bg-secondary">Старый</span>';
+                        }
+                    }
+                },
+                {
+                    data: 'stageCount',
+                    className: 'text-center'
+                }
+            ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/ru.json'
+            },
+            pageLength: 10,
+            lengthMenu: [10, 25, 50],
+            info: true,
+            searching: true,
+            ordering: true,
+            paging: true
+        });
+
+        // Кнопка обновления данных
+        $('#refreshBtn').on('click', function() {
+            console.log('Обновление данных...');
+            table.ajax.reload();
+        });
+    });
+</script>

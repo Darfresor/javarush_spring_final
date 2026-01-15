@@ -124,6 +124,50 @@
             <version>${springdoc.version}</version>
         </dependency>
 
+        <!-- Полный комплект для продвинутой таблицы -->
+        <!-- ЯДРО -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables</artifactId>
+            <version>2.3.6</version>
+        </dependency>
+
+        <!-- ВЫДЕЛЕНИЕ СТРОК И ЧЕКБОКСЫ -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables-select</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <!-- 2. кнопки -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables-buttons</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
+        <!-- 4. SEARCHPANES - расширенные фильтры -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables-searchpanes</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+        <!-- для экспорта в excel -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jszip</artifactId>
+            <version>3.10.1</version>
+        </dependency>
+
+
+
+
         <!-- Тесты -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
