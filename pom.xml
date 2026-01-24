@@ -21,6 +21,7 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <lombok.version>1.18.30</lombok.version>
         <spring.profiles.active>local</spring.profiles.active>
+        <logback.version>1.5.6</logback.version>
     </properties>
 
     <dependencies>
@@ -180,6 +181,7 @@
             <artifactId>spring-modulith-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -203,6 +205,8 @@
                 <includes>
                     <include>**/*.properties</include>
                     <include>**/*.yml</include>
+                    <include>**/*.yaml</include>
+                    <include>**/*.xml</include>
                     <include>**/*.html</include>
                     <include>**/*.css</include>
                     <include>**/*.js</include>

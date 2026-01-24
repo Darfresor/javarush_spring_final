@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Имя приложения для логов -->
+    <property name="APP_NAME" value="spring_final"/>
+
+    <!--  БАЗОВЫЙ ПУТЬ  -->
+    <property name="LOG_HOME" value="./logs"/>
+
+    <!-- Паттерн для логов -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c: %m%n"/>
+
+    <!-- Console аппендер -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Rolling File аппендер -->
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${APP_NAME}.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+
+        <!-- Политика ротации по времени и размеру -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- Архивировать ежедневно -->
+            <fileNamePattern>${LOG_HOME}/archived/${APP_NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <!-- Хранить 7 дней -->
+            <maxHistory>7</maxHistory>
+
+            <!-- Размер файла до 10MB -->
+            <maxFileSize>10MB</maxFileSize>
+
+            <totalSizeCap>100MB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+
+        </rollingPolicy>
+    </appender>
+
+    <!-- Настройки логгеров -->
+    <logger name="HomeUIController" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLING_FILE"/>
+    </logger>
+
+    <!-- Корневой логгер -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLING_FILE"/>
+    </root>
+</configuration>
