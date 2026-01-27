@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(1)
 public class AdviceExecutor {
-    @Before("com.javarush.hibernate_final.ostapenko.hibernate.aspect.logging.PointCutSearcher.publicMethodsInHomePackage()")
+    @Before("PointCutSearcher.publicMethodsInHomePackage()")
     public void logBeforeHomeService(JoinPoint joinPoint) {
         String className = joinPoint.getTarget().getClass().getName();
         Logger log = LoggerFactory.getLogger(className);
