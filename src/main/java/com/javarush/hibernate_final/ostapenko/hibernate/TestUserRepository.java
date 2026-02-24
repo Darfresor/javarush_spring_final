@@ -1,6 +1,6 @@
 package com.javarush.hibernate_final.ostapenko.hibernate;
 
-import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.User;
+import com.javarush.hibernate_final.ostapenko.hibernate.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

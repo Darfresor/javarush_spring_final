@@ -1,7 +1,7 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.security.service;
 
-import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.User;
-import com.javarush.hibernate_final.ostapenko.hibernate.model.repository.UserRepository;
+import com.javarush.hibernate_final.ostapenko.hibernate.entity.User;
+import com.javarush.hibernate_final.ostapenko.hibernate.repository.UserRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,8 +1,8 @@
 package com.javarush.hibernate_final.ostapenko.hibernate;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.QuestTo;
-import com.javarush.hibernate_final.ostapenko.hibernate.model.service.QuestService;
-import com.javarush.hibernate_final.ostapenko.hibernate.model.service.login.UserService;
+import com.javarush.hibernate_final.ostapenko.hibernate.service.QuestService;
+import com.javarush.hibernate_final.ostapenko.hibernate.service.login.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

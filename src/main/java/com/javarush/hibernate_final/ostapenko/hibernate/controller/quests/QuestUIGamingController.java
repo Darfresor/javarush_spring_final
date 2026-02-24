@@ -1,7 +1,7 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.quests;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.StageTo;
-import com.javarush.hibernate_final.ostapenko.hibernate.model.service.StageService;
+import com.javarush.hibernate_final.ostapenko.hibernate.service.StageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

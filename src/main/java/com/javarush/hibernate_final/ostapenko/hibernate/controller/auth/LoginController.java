@@ -1,6 +1,6 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.auth;
 
-import com.javarush.hibernate_final.ostapenko.hibernate.model.service.login.LoginService;
+import com.javarush.hibernate_final.ostapenko.hibernate.service.login.LoginService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestParam;
 

@@ -1,7 +1,7 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.quests;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.QuestTo;
-import com.javarush.hibernate_final.ostapenko.hibernate.model.service.QuestService;
+import com.javarush.hibernate_final.ostapenko.hibernate.service.QuestService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

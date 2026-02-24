@@ -1,13 +1,8 @@
 package com.javarush.hibernate_final.ostapenko.hibernate;
 
-import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.Quest;
-import com.javarush.hibernate_final.ostapenko.hibernate.model.entity.User;
+import com.javarush.hibernate_final.ostapenko.hibernate.entity.Quest;
 
-import javax.sql.rowset.CachedRowSet;
-import javax.sql.rowset.RowSetFactory;
-import javax.sql.rowset.RowSetProvider;
 import java.sql.*;
-import java.util.List;
 
 public class Tests {
     public static void main(String[] args) throws SQLException {
