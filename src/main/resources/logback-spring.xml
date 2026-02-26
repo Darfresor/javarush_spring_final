@@ -3,15 +3,19 @@
     <!-- Имя приложения для логов -->
     <property name="APP_NAME" value="spring_final"/>
 
-    <!--  БАЗОВЫЙ ПУТЬ  -->
+    <!-- БАЗОВЫЙ ПУТЬ -->
     <property name="LOG_HOME" value="./logs"/>
 
-    <!-- Паттерн для логов -->
-    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c: %m%n"/>
+    <!-- Паттерн для логов с добавлением traceId и thread -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%X{traceId}] [%thread] %c{36}: %m%n"/>
+
+    <!-- Альтернативный паттерн без traceId (если нужно) -->
+    <property name="LOG_PATTERN_NO_TRACE" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%thread] %c{36}: %m%n"/>
 
     <!-- Console аппендер -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
+            <!-- Используем паттерн с traceId -->
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
@@ -20,6 +24,7 @@
     <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/${APP_NAME}.log</file>
         <encoder>
+            <!-- Для файлов тоже добавляем traceId для удобства поиска -->
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
 
@@ -36,8 +41,14 @@
 
             <totalSizeCap>100MB</totalSizeCap>
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
-
         </rollingPolicy>
+    </appender>
+
+    <!-- Опционально: аппендер для логов без traceId (например, для сторонних библиотек) -->
+    <appender name="CONSOLE_NO_TRACE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN_NO_TRACE}</pattern>
+        </encoder>
     </appender>
 
     <!-- Настройки логгеров -->
@@ -45,6 +56,14 @@
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ROLLING_FILE"/>
     </logger>
+
+    <!-- Для логов Hibernate можно оставить без traceId если мешает -->
+    <!--
+    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE_NO_TRACE"/>
+        <appender-ref ref="ROLLING_FILE"/>
+    </logger>
+    -->
 
     <!-- Корневой логгер -->
     <root level="INFO">

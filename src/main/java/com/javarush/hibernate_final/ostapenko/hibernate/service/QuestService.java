@@ -1,6 +1,7 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.service;
 
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.QuestTo;
+import com.javarush.hibernate_final.ostapenko.hibernate.aspect.annotaion.EnableLogging;
 import com.javarush.hibernate_final.ostapenko.hibernate.entity.Quest;
 import com.javarush.hibernate_final.ostapenko.hibernate.mapper.QuestMapper;
 import com.javarush.hibernate_final.ostapenko.hibernate.repository.QuestRepository;
@@ -39,6 +40,8 @@ public class QuestService {
                 questPage.getTotalElements()
         );
     }
+
+    @EnableLogging
     public QuestTo findById(Long id){
         Optional<Quest> questOptional = questRepository.findById(id);
         if(questOptional.isPresent()){
