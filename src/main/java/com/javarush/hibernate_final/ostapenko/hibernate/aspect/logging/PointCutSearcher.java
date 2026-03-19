@@ -10,6 +10,7 @@ public class PointCutSearcher {
     @Pointcut("execution(public * *(..))") // любой публичный метод
     public void publicMethods() {}
 
+    //срез включает в себя определенный пакет(ы)
     @Pointcut("within(com.javarush.hibernate_final.ostapenko.hibernate.controller.home..*)")
     public void homePackageControllers() {}
 
