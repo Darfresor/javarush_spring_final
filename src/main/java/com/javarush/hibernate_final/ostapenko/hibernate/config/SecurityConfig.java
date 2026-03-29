@@ -70,7 +70,7 @@ public class SecurityConfig {
                                 "/",
                                 "/ui/home",
                                 "/ui/login",
-                                "/ui/register", // ← добавьте если есть регистрация
+                                "/ui/register",
                                 "/bootstrap/**",
                                 "/public",
                                 "/api/auth/**",
