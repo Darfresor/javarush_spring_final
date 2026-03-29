@@ -52,18 +52,10 @@
     </appender>
 
     <!-- Настройки логгеров -->
-    <logger name="HomeUIController" level="DEBUG" additivity="false">
+    <logger name="com.javarush.hibernate_final.ostapenko.hibernate.controller.home" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ROLLING_FILE"/>
     </logger>
-
-    <!-- Для логов Hibernate можно оставить без traceId если мешает -->
-    <!--
-    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
-        <appender-ref ref="CONSOLE_NO_TRACE"/>
-        <appender-ref ref="ROLLING_FILE"/>
-    </logger>
-    -->
 
     <!-- Корневой логгер -->
     <root level="INFO">
