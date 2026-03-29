@@ -20,11 +20,11 @@ import java.util.UUID;
 @Aspect
 @Component
 @EnableConfigurationProperties(LoggingProperties.class)
-public class LoggingAspect {
+public class MarkedDetailLoggingAspect {
     private static final String TRACE_ID_KEY = "traceId";
     private final LoggingProperties loggingProperties;
 
-    public LoggingAspect(LoggingProperties loggingProperties) {
+    public MarkedDetailLoggingAspect(LoggingProperties loggingProperties) {
         this.loggingProperties = loggingProperties;
     }
 

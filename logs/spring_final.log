@@ -610,3 +610,155 @@
 2026-03-29 12:31:25.381 INFO  [] [http-nio-8080-exec-1] c.j.h.o.h.c.home.HomeUIController: Начало работы метода: home
 2026-03-29 12:31:25.382 INFO  [] [http-nio-8080-exec-1] c.j.h.o.h.c.home.HomeUIController: Завершение работы метода: home
 2026-03-29 12:31:25.382 DEBUG [] [http-nio-8080-exec-1] c.j.h.o.h.c.home.HomeUIController: Параметры метода: [{appTitle=Мое крутое приложение, welcomeMessage=Добро пожаловать в нашу систему!, appName=quest, isAdmin=true, userId=12345, infoLinkText=Подробная информация, features=[Управление задачами, Отчеты и аналитика, Командная работа]}]
+2026-03-29 12:36:42.609 INFO  [] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown: Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-29 12:36:42.626 INFO  [] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown: Graceful shutdown complete
+2026-03-29 12:36:42.631 INFO  [] [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-29 12:36:42.634 INFO  [] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated...
+2026-03-29 12:36:42.648 INFO  [] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed.
+2026-03-29 12:36:46.481 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-03-29 12:36:46.533 INFO  [] [main] c.j.h.o.h.HibernateApplication: Starting HibernateApplication using Java 23.0.2 with PID 17656 (C:\Users\Alex_pk\IdeaProjects\javarush_spring_final\target\classes started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-03-29 12:36:46.534 INFO  [] [main] c.j.h.o.h.HibernateApplication: The following 1 profile is active: "dev"
+2026-03-29 12:36:47.347 INFO  [] [main] o.s.d.r.c.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-29 12:36:47.425 INFO  [] [main] o.s.d.r.c.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 70 ms. Found 7 JPA repository interfaces.
+2026-03-29 12:36:47.648 INFO  [] [main] c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor: Post-processing PropertySource instances
+2026-03-29 12:36:47.649 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2026-03-29 12:36:47.649 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2026-03-29 12:36:47.649 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2026-03-29 12:36:47.650 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2026-03-29 12:36:47.650 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2026-03-29 12:36:47.651 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2026-03-29 12:36:47.651 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2026-03-29 12:36:47.651 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource applicationInfo [org.springframework.boot.ApplicationInfoPropertySource] to EncryptableMapPropertySourceWrapper
+2026-03-29 12:36:48.115 INFO  [] [main] o.s.b.w.e.tomcat.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2026-03-29 12:36:48.127 INFO  [] [main] o.a.coyote.http11.Http11NioProtocol: Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-29 12:36:48.128 INFO  [] [main] o.a.catalina.core.StandardService: Starting service [Tomcat]
+2026-03-29 12:36:48.129 INFO  [] [main] o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-03-29 12:36:48.182 INFO  [] [main] o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2026-03-29 12:36:48.182 INFO  [] [main] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1591 ms
+2026-03-29 12:36:48.203 INFO  [] [main] c.u.j.f.DefaultLazyPropertyFilter: Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2026-03-29 12:36:48.210 INFO  [] [main] c.u.j.r.DefaultLazyPropertyResolver: Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2026-03-29 12:36:48.212 INFO  [] [main] c.u.j.d.DefaultLazyPropertyDetector: Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2026-03-29 12:36:48.285 INFO  [] [main] c.u.j.encryptor.DefaultLazyEncryptor: String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2026-03-29 12:36:48.293 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2026-03-29 12:36:48.294 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2026-03-29 12:36:48.294 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2026-03-29 12:36:48.294 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2026-03-29 12:36:48.294 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2026-03-29 12:36:48.295 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2026-03-29 12:36:48.440 INFO  [] [main] o.h.jpa.internal.util.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-29 12:36:48.486 INFO  [] [main] org.hibernate.Version: HHH000412: Hibernate ORM core version 6.6.33.Final
+2026-03-29 12:36:48.517 INFO  [] [main] o.h.c.i.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2026-03-29 12:36:48.763 INFO  [] [main] o.s.o.j.p.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-29 12:36:48.790 WARN  [] [main] com.zaxxer.hikari.HikariConfig: HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2026-03-29 12:36:48.790 INFO  [] [main] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting...
+2026-03-29 12:36:49.120 INFO  [] [main] com.zaxxer.hikari.pool.HikariPool: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@310f8a05
+2026-03-29 12:36:49.122 INFO  [] [main] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed.
+2026-03-29 12:36:49.161 WARN  [] [main] org.hibernate.orm.deprecation: HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-29 12:36:49.162 WARN  [] [main] org.hibernate.orm.deprecation: HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-03-29 12:36:49.181 INFO  [] [main] o.hibernate.orm.connections.pooling: HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-29 12:36:50.164 INFO  [] [main] o.h.e.t.j.p.i.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-29 12:36:50.288 INFO  [] [main] o.s.o.j.LocalContainerEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-29 12:36:50.533 INFO  [] [main] o.s.d.j.r.query.QueryEnhancerFactory: Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-29 12:36:51.295 INFO  [] [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer: Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+2026-03-29 12:36:51.405 WARN  [] [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-29 12:36:52.122 INFO  [] [main] o.a.coyote.http11.Http11NioProtocol: Starting ProtocolHandler ["http-nio-8080"]
+2026-03-29 12:36:52.137 INFO  [] [main] o.s.b.w.e.tomcat.TomcatWebServer: Tomcat started on port 8080 (http) with context path '/'
+2026-03-29 12:36:52.138 INFO  [] [main] c.u.j.c.RefreshScopeRefreshedEventListener: Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+2026-03-29 12:36:52.138 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source systemProperties refreshed
+2026-03-29 12:36:52.138 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source systemEnvironment refreshed
+2026-03-29 12:36:52.138 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source random refreshed
+2026-03-29 12:36:52.138 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
+2026-03-29 12:36:52.139 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source applicationInfo refreshed
+2026-03-29 12:36:52.139 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2026-03-29 12:36:52.139 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2026-03-29 12:36:52.139 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2026-03-29 12:36:52.147 INFO  [] [main] o.s.s.config.TaskSchedulerRouter: No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-03-29 12:36:52.151 INFO  [] [main] c.j.h.o.h.HibernateApplication: Started HibernateApplication in 6.155 seconds (process running for 6.829)
+2026-03-29 12:41:52.855 INFO  [] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-29 12:41:52.855 INFO  [] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet: Initializing Servlet 'dispatcherServlet'
+2026-03-29 12:41:52.856 INFO  [] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet: Completed initialization in 1 ms
+2026-03-29 12:42:00.656 INFO  [75dfb632-147c-4276-bffa-83a06ce86a93] [http-nio-8080-exec-5] QuestService: [Trace: 75dfb632-147c-4276-bffa-83a06ce86a93] -->  | Параметры: [1]
+2026-03-29 12:42:00.673 INFO  [75dfb632-147c-4276-bffa-83a06ce86a93] [http-nio-8080-exec-5] QuestService: [Trace: 75dfb632-147c-4276-bffa-83a06ce86a93] <--  | Завершено за 17 ms | Результат: QuestTo(id=1, questName=История по мотивам романа Всеведущий читатель, description=тут будет описание, imgPath=quests/quest1/title.jpg, isNew=false)
+2026-03-29 12:44:31.000 INFO  [] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown: Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-29 12:44:31.010 INFO  [] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown: Graceful shutdown complete
+2026-03-29 12:44:31.014 INFO  [] [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-29 12:44:31.016 INFO  [] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated...
+2026-03-29 12:44:31.036 INFO  [] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed.
+2026-03-29 12:44:34.802 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-03-29 12:44:34.851 INFO  [] [main] c.j.h.o.h.HibernateApplication: Starting HibernateApplication using Java 23.0.2 with PID 17500 (C:\Users\Alex_pk\IdeaProjects\javarush_spring_final\target\classes started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-03-29 12:44:34.852 INFO  [] [main] c.j.h.o.h.HibernateApplication: The following 1 profile is active: "dev"
+2026-03-29 12:44:35.675 INFO  [] [main] o.s.d.r.c.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-29 12:44:35.769 INFO  [] [main] o.s.d.r.c.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 85 ms. Found 7 JPA repository interfaces.
+2026-03-29 12:44:36.024 INFO  [] [main] c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor: Post-processing PropertySource instances
+2026-03-29 12:44:36.025 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2026-03-29 12:44:36.025 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2026-03-29 12:44:36.026 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2026-03-29 12:44:36.027 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2026-03-29 12:44:36.027 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2026-03-29 12:44:36.027 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2026-03-29 12:44:36.027 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2026-03-29 12:44:36.027 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource applicationInfo [org.springframework.boot.ApplicationInfoPropertySource] to EncryptableMapPropertySourceWrapper
+2026-03-29 12:44:36.484 INFO  [] [main] o.s.b.w.e.tomcat.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2026-03-29 12:44:36.495 INFO  [] [main] o.a.coyote.http11.Http11NioProtocol: Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-29 12:44:36.497 INFO  [] [main] o.a.catalina.core.StandardService: Starting service [Tomcat]
+2026-03-29 12:44:36.498 INFO  [] [main] o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-03-29 12:44:36.552 INFO  [] [main] o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2026-03-29 12:44:36.553 INFO  [] [main] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1649 ms
+2026-03-29 12:44:36.576 INFO  [] [main] c.u.j.f.DefaultLazyPropertyFilter: Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2026-03-29 12:44:36.582 INFO  [] [main] c.u.j.r.DefaultLazyPropertyResolver: Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2026-03-29 12:44:36.584 INFO  [] [main] c.u.j.d.DefaultLazyPropertyDetector: Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2026-03-29 12:44:36.652 INFO  [] [main] c.u.j.encryptor.DefaultLazyEncryptor: String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2026-03-29 12:44:36.660 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2026-03-29 12:44:36.661 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2026-03-29 12:44:36.661 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2026-03-29 12:44:36.661 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2026-03-29 12:44:36.661 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2026-03-29 12:44:36.662 INFO  [] [main] c.u.j.c.StringEncryptorBuilder: Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2026-03-29 12:44:36.812 INFO  [] [main] o.h.jpa.internal.util.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-29 12:44:36.859 INFO  [] [main] org.hibernate.Version: HHH000412: Hibernate ORM core version 6.6.33.Final
+2026-03-29 12:44:36.887 INFO  [] [main] o.h.c.i.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2026-03-29 12:44:37.132 INFO  [] [main] o.s.o.j.p.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-29 12:44:37.158 WARN  [] [main] com.zaxxer.hikari.HikariConfig: HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2026-03-29 12:44:37.159 INFO  [] [main] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting...
+2026-03-29 12:44:37.506 INFO  [] [main] com.zaxxer.hikari.pool.HikariPool: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e1598e5
+2026-03-29 12:44:37.507 INFO  [] [main] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed.
+2026-03-29 12:44:37.547 WARN  [] [main] org.hibernate.orm.deprecation: HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-29 12:44:37.548 WARN  [] [main] org.hibernate.orm.deprecation: HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-03-29 12:44:37.566 INFO  [] [main] o.hibernate.orm.connections.pooling: HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-29 12:44:38.569 INFO  [] [main] o.h.e.t.j.p.i.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-29 12:44:38.698 INFO  [] [main] o.s.o.j.LocalContainerEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-29 12:44:38.941 INFO  [] [main] o.s.d.j.r.query.QueryEnhancerFactory: Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-29 12:44:39.744 INFO  [] [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer: Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+2026-03-29 12:44:39.860 WARN  [] [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-29 12:44:40.607 INFO  [] [main] o.a.coyote.http11.Http11NioProtocol: Starting ProtocolHandler ["http-nio-8080"]
+2026-03-29 12:44:40.622 INFO  [] [main] o.s.b.w.e.tomcat.TomcatWebServer: Tomcat started on port 8080 (http) with context path '/'
+2026-03-29 12:44:40.623 INFO  [] [main] c.u.j.c.RefreshScopeRefreshedEventListener: Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+2026-03-29 12:44:40.623 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source systemProperties refreshed
+2026-03-29 12:44:40.623 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source systemEnvironment refreshed
+2026-03-29 12:44:40.624 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source random refreshed
+2026-03-29 12:44:40.624 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
+2026-03-29 12:44:40.624 INFO  [] [main] c.u.j.c.CachingDelegateEncryptablePropertySource: Property Source applicationInfo refreshed
+2026-03-29 12:44:40.624 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2026-03-29 12:44:40.624 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2026-03-29 12:44:40.624 INFO  [] [main] c.u.j.EncryptablePropertySourceConverter: Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2026-03-29 12:44:40.632 INFO  [] [main] o.s.s.config.TaskSchedulerRouter: No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-03-29 12:44:40.636 INFO  [] [main] c.j.h.o.h.HibernateApplication: Started HibernateApplication in 6.325 seconds (process running for 6.98)
+2026-03-29 12:44:47.647 INFO  [] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-29 12:44:47.647 INFO  [] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet: Initializing Servlet 'dispatcherServlet'
+2026-03-29 12:44:47.648 INFO  [] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet: Completed initialization in 1 ms
+2026-03-29 12:44:53.280 INFO  [0b681d23-f658-4a71-be24-e96a9fbda041] [http-nio-8080-exec-5] QuestService: [Trace: 0b681d23-f658-4a71-be24-e96a9fbda041] --> Поиск пользователей по фильтру | Параметры: [1]
+2026-03-29 12:44:53.298 INFO  [0b681d23-f658-4a71-be24-e96a9fbda041] [http-nio-8080-exec-5] QuestService: [Trace: 0b681d23-f658-4a71-be24-e96a9fbda041] <-- Поиск пользователей по фильтру | Завершено за 18 ms | Результат: QuestTo(id=1, questName=История по мотивам романа Всеведущий читатель, description=тут будет описание, imgPath=quests/quest1/title.jpg, isNew=false)
