@@ -5,6 +5,7 @@ import com.javarush.hibernate_final.ostapenko.hibernate.security.dto.AuthRespons
 import com.javarush.hibernate_final.ostapenko.hibernate.security.jwt.JwtService;
 import jakarta.servlet.http.Cookie; // ← Добавьте
 import jakarta.servlet.http.HttpServletResponse; // ← Убедитесь, что есть
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,7 +24,7 @@ public class AuthController {
     private JwtService jwtService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest,
+    public ResponseEntity<?> login(@Valid @RequestBody AuthRequest authRequest,
                                    HttpServletResponse response) {
         try {
             Authentication authentication = authenticationManager.authenticate(

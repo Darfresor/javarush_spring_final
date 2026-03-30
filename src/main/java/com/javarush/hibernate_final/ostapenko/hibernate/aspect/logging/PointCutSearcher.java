@@ -18,9 +18,17 @@ public class PointCutSearcher {
     @Pointcut("within(com.javarush.hibernate_final.ostapenko.hibernate.controller.profile..*)")
     public void profilePackageControllers() {}
 
+    //срез включает в себя определенный пакет(ы)
+    @Pointcut("within(com.javarush.hibernate_final.ostapenko.hibernate.security.controller..*)")
+    public void securityPackageControllers() {}
+
     //  Комбинированный pointcut для двух пакетов контроллеров
     @Pointcut("homePackageControllers() || profilePackageControllers()")
     public void homeAndProfileControllers() {}
+
+    //  Комбинированный pointcut для трех пакетов контроллеров
+    @Pointcut("homePackageControllers() || profilePackageControllers() || securityPackageControllers()")
+    public void homeAndProfileAndSecurityControllers() {}
 
 
 
