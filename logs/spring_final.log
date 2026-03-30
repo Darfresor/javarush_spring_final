@@ -89,3 +89,31 @@
 2026-03-30 21:15:48.057 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
 2026-03-30 21:15:48.057 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 0 ms
 2026-03-30 21:15:48.089 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 2.774 seconds (process running for 4.082)
+2026-03-30 21:31:37.301 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-03-30 21:31:37.352 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 840 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-03-30 21:31:37.352 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-03-30 21:31:39.492 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-03-30 21:31:39.492 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-03-30 21:31:39.492 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 0 ms
+2026-03-30 21:31:39.533 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 2.747 seconds (process running for 4.032)
+2026-03-30 21:33:15.997 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-03-30 21:33:16.039 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 15476 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-03-30 21:33:16.039 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-03-30 21:33:18.148 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-03-30 21:33:18.148 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-03-30 21:33:18.159 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 11 ms
+2026-03-30 21:33:18.179 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 2.714 seconds (process running for 4.191)
+2026-03-30 21:34:44.800 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-03-30 21:34:44.851 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 15472 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-03-30 21:34:44.851 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-03-30 21:34:47.003 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-03-30 21:34:47.003 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-03-30 21:34:47.003 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 0 ms
+2026-03-30 21:34:47.033 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 2.747 seconds (process running for 4.038)
+2026-03-30 21:35:18.255 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-03-30 21:35:18.306 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 11952 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-03-30 21:35:18.306 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-03-30 21:35:20.526 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-03-30 21:35:20.526 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-03-30 21:35:20.526 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 0 ms
+2026-03-30 21:35:20.557 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 2.823 seconds (process running for 4.182)
