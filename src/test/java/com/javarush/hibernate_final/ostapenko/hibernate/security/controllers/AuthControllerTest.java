@@ -3,6 +3,7 @@ package com.javarush.hibernate_final.ostapenko.hibernate.security.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javarush.hibernate_final.ostapenko.hibernate.controller.quests.QuestsUIController;
 import com.javarush.hibernate_final.ostapenko.hibernate.security.controller.AuthController;
+import com.javarush.hibernate_final.ostapenko.hibernate.security.controller.AuthControllerExceptionHandler;
 import com.javarush.hibernate_final.ostapenko.hibernate.security.dto.AuthRequest;
 import com.javarush.hibernate_final.ostapenko.hibernate.security.dto.AuthResponse;
 import com.javarush.hibernate_final.ostapenko.hibernate.security.jwt.JwtService;
@@ -27,6 +28,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.ArrayList;
 
+import static com.javarush.hibernate_final.ostapenko.hibernate.security.controller.AuthControllerExceptionHandler.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -73,6 +75,22 @@ public class AuthControllerTest {
                 ).andExpect(status().isOk())
                 .andExpect(jsonPath("$.token").value("test.jwt.token"));
 
+    }
+
+    @Test
+    void createAuthToken_whenWrongUser_thenReturn400() throws Exception {
+        AuthRequest authRequest = new AuthRequest();
+        authRequest.setUsername("test222");
+        authRequest.setPassword("ad");
+
+        //настраиваем чтобы аутентификация бросала ошибку при проверке данных пользователя
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenThrow(new BadCredentialsException("Invalid credentials"));
+
+        mockMvc.perform(post("/api/auth/login")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(authRequest))
+        ).andExpect(status().isBadRequest());
     }
 
     @Test
@@ -156,6 +174,29 @@ public class AuthControllerTest {
                 ).andReturn();
         String expectedResponseBody = objectMapper.writeValueAsString(new AuthResponse("test.jwt.token"));
         String actualResponseBody = mvcResult.getResponse().getContentAsString();
+
+        assertThat(actualResponseBody).isEqualToIgnoringWhitespace(expectedResponseBody);
+
+    }
+
+    @Test
+    void createAuthToken_whenWrongUser_thenReturn400AndErrorsResult() throws Exception {
+        AuthRequest authRequest = new AuthRequest();
+        authRequest.setUsername("test222");
+        authRequest.setPassword("ad");
+
+        //настраиваем чтобы аутентификация бросала ошибку при проверке данных пользователя
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenThrow(new BadCredentialsException("Invalid credentials"));
+
+        MvcResult mvcResult =  mockMvc.perform(post("/api/auth/login")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(authRequest))
+                ).andExpect(status().isBadRequest())
+                .andReturn();
+        ErrorResult expectedErrorResponse =  new ErrorResult("password","Password must be at least 3 characters long");
+        String actualResponseBody = mvcResult.getResponse().getContentAsString();
+        String expectedResponseBody = objectMapper.writeValueAsString(expectedErrorResponse);
 
         assertThat(actualResponseBody).isEqualToIgnoringWhitespace(expectedResponseBody);
 

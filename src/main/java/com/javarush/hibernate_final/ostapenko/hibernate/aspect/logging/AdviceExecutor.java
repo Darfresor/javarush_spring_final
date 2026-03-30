@@ -16,14 +16,14 @@ import java.util.Arrays;
 @Component
 @Order(1)
 public class AdviceExecutor {
-    @Before("PointCutSearcher.homeAndProfileControllers()")
+    @Before("PointCutSearcher.homeAndProfileAndSecurityControllers()")
     public void logBefore(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String className = signature.getDeclaringTypeName();
         Logger log = LoggerFactory.getLogger(className);
         log.info("Начало работы метода: {}", joinPoint.getSignature().getName());
     }
-    @After("PointCutSearcher.homeAndProfileControllers()")
+    @After("PointCutSearcher.homeAndProfileAndSecurityControllers()")
     public void logAfter(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String className = signature.getDeclaringTypeName();
