@@ -11,9 +11,18 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -39,10 +48,20 @@ public class AuthControllerTest {
         authRequest.setUsername("admin");
         authRequest.setPassword("admin123");
 
+        UserDetails userDetails = new User("admin", "admin123", new ArrayList<>());
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        //при любом вызове аутентификации возвращаем успех
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenReturn(authentication);
+        //настраиваем генерацию токена
+        when(jwtService.generateToken(userDetails)).thenReturn("test.jwt.token");
+
         mockMvc.perform(post("/api/auth/login")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsString(authRequest))
-        ).andExpect(status().isOk());
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(authRequest))
+                ).andExpect(status().isOk())
+                .andExpect(jsonPath("$.token").value("test.jwt.token"));
 
     }
 
@@ -51,6 +70,7 @@ public class AuthControllerTest {
         AuthRequest authRequest = new AuthRequest();
         authRequest.setUsername("test222");
         authRequest.setPassword("admin123");
+
 
         mockMvc.perform(post("/api/auth/login")
                 .contentType("application/json")
