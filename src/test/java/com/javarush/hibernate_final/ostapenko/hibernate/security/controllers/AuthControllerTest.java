@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -71,11 +72,15 @@ public class AuthControllerTest {
         authRequest.setUsername("test222");
         authRequest.setPassword("admin123");
 
+        //настраиваем чтобы аутентификация бросала ошибку при проверке данных пользователя
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenThrow(new BadCredentialsException("Invalid credentials"));
 
         mockMvc.perform(post("/api/auth/login")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsString(authRequest))
-        ).andExpect(status().isUnauthorized());
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(authRequest))
+                ).andExpect(status().isUnauthorized())
+                .andExpect(content().string("Invalid credentials"));
     }
 
 
