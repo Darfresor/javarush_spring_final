@@ -41,7 +41,6 @@ public class QuestService {
         );
     }
 
-    @EnableLogging(description = "Поиск пользователей по фильтру")
     public QuestTo findById(Long id){
         Optional<Quest> questOptional = questRepository.findById(id);
         if(questOptional.isPresent()){
