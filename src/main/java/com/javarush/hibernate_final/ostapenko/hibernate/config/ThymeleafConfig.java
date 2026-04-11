@@ -9,7 +9,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 @Configuration
 public class ThymeleafConfig {
 
-    // Переименуйте bean с "securityDialect" на "jwtSecurityDialect"
+
     @Bean(name = "jwtSecurityDialect")
     public SecurityDialect jwtSecurityDialect() {
         return new SecurityDialect();
@@ -23,7 +23,7 @@ public class ThymeleafConfig {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
 
-        // Добавляем оба диалекта
+
         templateEngine.addDialect(jwtSecurityDialect);
 
         return templateEngine;

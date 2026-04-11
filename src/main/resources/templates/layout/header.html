@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:lang="http://www.w3.org/1999/xhtml">
 <div th:fragment="header(activeMenuItem)">
     <header class="p-3 text-bg-dark">
         <div class="container-fluid">
@@ -19,37 +19,43 @@
                     <ul class="nav nav-pills">
                         <li class="nav-item">
                             <a th:href="@{/ui/home}"
-                               th:class="'nav-link ' + (${activeMenuItem == 'home'} ? 'active text-white' : 'text-white')">
+                               th:class="'nav-link ' + (${activeMenuItem == 'home'} ? 'active text-white' : 'text-white')"
+                               th:text="#{label.menu.home}">
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
                             <a th:href="@{/ui/quests}"
-                               th:class="'nav-link ' + (${activeMenuItem == 'quests'} ? 'active text-white' : 'text-white')">
+                               th:class="'nav-link ' + (${activeMenuItem == 'quests'} ? 'active text-white' : 'text-white')"
+                               th:text="#{label.menu.quest}">
                                 Квесты
                             </a>
                         </li>
                         <li class="nav-item">
                             <a th:href="@{/ui/forum/topics}"
-                               th:class="'nav-link ' + (${activeMenuItem == 'forum'} ? 'active text-white' : 'text-white')">
+                               th:class="'nav-link ' + (${activeMenuItem == 'forum'} ? 'active text-white' : 'text-white')"
+                               th:text="#{label.menu.forum}">
                                 Форум
                             </a>
                         </li>
                         <li class="nav-item">
                             <a th:href="@{/ui/workshop}"
-                               th:class="'nav-link ' + (${activeMenuItem == 'workshop'} ? 'active text-white' : 'text-white')">
+                               th:class="'nav-link ' + (${activeMenuItem == 'workshop'} ? 'active text-white' : 'text-white')"
+                               th:text="#{label.menu.quest_workshop}">
                                 Мастерская квестов
                             </a>
                         </li>
                         <li class="nav-item">
                             <a th:href="@{/faqs}"
-                               th:class="'nav-link ' + (${activeMenuItem == 'faqs'} ? 'active text-white' : 'text-white')">
+                               th:class="'nav-link ' + (${activeMenuItem == 'faqs'} ? 'active text-white' : 'text-white')"
+                                th:text="#{label.menu.faq}">
                                 FAQs
                             </a>
                         </li>
                         <li class="nav-item">
                             <a th:href="@{/swagger-ui.html}"
-                               th:class="'nav-link ' + (${activeMenuItem == 'api'} ? 'active text-white' : 'text-white')">
+                               th:class="'nav-link ' + (${activeMenuItem == 'api'} ? 'active text-white' : 'text-white')"
+                               th:text="#{label.menu.documentation_api}">
                                 Документация API
                             </a>
                         </li>
@@ -59,55 +65,89 @@
                 <!-- Поиск и кнопки/профиль -->
                 <div class="col-md-4">
                     <div class="row align-items-center">
-                        <div class="col-7">
+                        <div class="col-6">
                             <input type="search" class="form-control form-control-dark" placeholder="Search...">
                         </div>
-                        <div class="col-5">
-                            <!-- 🔥 НЕАВТОРИЗОВАННЫЙ пользователь -->
-                            <div class="d-flex gap-2" th:if="${not #jwt.isAuthenticated()}">
-                                <a th:href="@{/ui/login}" class="btn btn-outline-light btn-sm" role="button">Вход</a>
-                                <a th:href="@{/ui/register}" class="btn btn-warning btn-sm">Регистрация</a>
-                            </div>
+                        <div class="col-6">
+                            <div class="d-flex gap-2 justify-content-end align-items-center">
+                                <!-- Переключатель языков -->
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span th:text="${#locale.language}" class="text-uppercase">en</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li>
+                                            <a class="dropdown-item" href="#" th:href="@{?language=ru}" th:text="#{label.lang.ru}">
+                                                language1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" th:href="@{?language=en}" th:text="#{label.lang.en}">
+                                                language2
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" th:href="@{?language=de}" th:text="#{label.lang.de}">
+                                                language3
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" th:href="@{?language=fr}" th:text="#{label.lang.fr}">
+                                                language4
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            <!-- 🔥 АВТОРИЗОВАННЫЙ пользователь -->
-                            <div class="dropdown" th:if="${#jwt.isAuthenticated()}">
-                                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    <!-- Аватар пользователя -->
-                                    <img th:src="@{/images/common/default-avatar.jpg}"
-                                         alt="User avatar" width="32" height="32" class="rounded-circle me-2">
-                                    <!-- Имя пользователя -->
-                                    <strong th:text="${#jwt.getUsername()}"></strong>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                                    <li>
-                                        <a class="dropdown-item" th:href="@{/ui/profile}">
-                                            <i class="bi bi-person me-2"></i>Профиль
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" th:href="@{/ui/settings}">
-                                            <i class="bi bi-gear me-2"></i>Настройки
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" th:href="@{/ui/my-quests}" th:if="${#jwt.hasRole('USER')}">
-                                            <i class="bi bi-controller me-2"></i>Мои квесты
-                                        </a>
-                                    </li>
-                                    <li th:if="${#jwt.hasRole('ADMIN')}">
-                                        <a class="dropdown-item" th:href="@{/admin}">
-                                            <i class="bi bi-shield-lock me-2"></i>Админ панель
-                                        </a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <!-- Кнопка выхода - вызываем window.Auth.logout() из auth.js -->
-                                        <button class="dropdown-item" type="button" onclick="window.Auth.logout()">
-                                            <i class="bi bi-box-arrow-right me-2"></i>Выход
-                                        </button>
-                                    </li>
-                                </ul>
+                                <!-- 🔥 НЕАВТОРИЗОВАННЫЙ пользователь -->
+                                <div th:if="${not #jwt.isAuthenticated()}">
+                                    <div class="d-flex gap-2">
+                                        <a th:href="@{/ui/login}" class="btn btn-outline-light btn-sm" role="button">Вход</a>
+                                        <a th:href="@{/ui/register}" class="btn btn-warning btn-sm">Регистрация</a>
+                                    </div>
+                                </div>
+
+                                <!-- 🔥 АВТОРИЗОВАННЫЙ пользователь -->
+                                <div class="dropdown" th:if="${#jwt.isAuthenticated()}">
+                                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                                       data-bs-toggle="dropdown" aria-expanded="false">
+                                        <!-- Аватар пользователя -->
+                                        <img th:src="@{/images/common/default-avatar.jpg}"
+                                             alt="User avatar" width="32" height="32" class="rounded-circle me-2">
+                                        <!-- Имя пользователя -->
+                                        <strong th:text="${#jwt.getUsername()}"></strong>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                                        <li>
+                                            <a class="dropdown-item" th:href="@{/ui/profile}">
+                                                <i class="bi bi-person me-2"></i>Профиль
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" th:href="@{/ui/settings}">
+                                                <i class="bi bi-gear me-2"></i>Настройки
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" th:href="@{/ui/my-quests}" th:if="${#jwt.hasRole('USER')}">
+                                                <i class="bi bi-controller me-2"></i>Мои квесты
+                                            </a>
+                                        </li>
+                                        <li th:if="${#jwt.hasRole('ADMIN')}">
+                                            <a class="dropdown-item" th:href="@{/admin}">
+                                                <i class="bi bi-shield-lock me-2"></i>Админ панель
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <!-- Кнопка выхода -->
+                                            <button class="dropdown-item" type="button" onclick="window.Auth.logout()">
+                                                <i class="bi bi-box-arrow-right me-2"></i>Выход
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
