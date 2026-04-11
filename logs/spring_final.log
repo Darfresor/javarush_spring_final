@@ -886,3 +886,10 @@ java.lang.NullPointerException: Cannot invoke "com.javarush.hibernate_final.osta
 2026-04-11 14:52:17.967 INFO  [] [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-04-11 14:52:17.977 INFO  [] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated...
 2026-04-11 14:52:17.986 INFO  [] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed.
+2026-04-11 15:18:10.999 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-04-11 15:18:11.050 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 14964 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-04-11 15:18:11.050 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-04-11 15:18:13.311 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-04-11 15:18:13.311 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-04-11 15:18:13.311 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 0 ms
+2026-04-11 15:18:13.343 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 2.885 seconds (process running for 4.307)
