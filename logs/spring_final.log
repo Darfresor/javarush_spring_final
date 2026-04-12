@@ -3059,3 +3059,31 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 2026-04-11 21:00:41.274 INFO  [] [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-04-11 21:00:41.274 INFO  [] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated...
 2026-04-11 21:00:41.294 INFO  [] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed.
+2026-04-11 21:42:11.572 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-04-11 21:42:11.619 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 18664 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-04-11 21:42:11.623 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-04-11 21:42:13.913 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-04-11 21:42:13.913 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-04-11 21:42:13.913 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 0 ms
+2026-04-11 21:42:13.943 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 2.861 seconds (process running for 4.405)
+2026-04-11 21:42:29.233 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-04-11 21:42:29.377 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 12328 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-04-11 21:42:29.377 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-04-11 21:42:33.297 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-04-11 21:42:33.297 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-04-11 21:42:33.297 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 0 ms
+2026-04-11 21:42:33.358 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 5.068 seconds (process running for 7.529)
+2026-04-11 21:42:53.815 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-04-11 21:42:53.869 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 21532 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-04-11 21:42:53.871 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-04-11 21:42:56.369 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-04-11 21:42:56.369 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-04-11 21:42:56.371 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 2 ms
+2026-04-11 21:42:56.405 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 3.116 seconds (process running for 4.789)
+2026-04-11 21:43:17.483 INFO  [] [background-preinit] o.h.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.3.Final
+2026-04-11 21:43:17.637 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Starting AuthControllerTest using Java 23.0.2 with PID 9088 (started by Alex_pk in C:\Users\Alex_pk\IdeaProjects\javarush_spring_final)
+2026-04-11 21:43:17.637 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: The following 1 profile is active: "dev"
+2026-04-11 21:43:21.502 INFO  [] [main] o.s.b.t.m.w.SpringBootMockServletContext: Initializing Spring TestDispatcherServlet ''
+2026-04-11 21:43:21.502 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Initializing Servlet ''
+2026-04-11 21:43:21.512 INFO  [] [main] o.s.t.w.s.TestDispatcherServlet: Completed initialization in 10 ms
+2026-04-11 21:43:21.563 INFO  [] [main] c.j.h.o.h.s.c.AuthControllerTest: Started AuthControllerTest in 5.021 seconds (process running for 7.564)
