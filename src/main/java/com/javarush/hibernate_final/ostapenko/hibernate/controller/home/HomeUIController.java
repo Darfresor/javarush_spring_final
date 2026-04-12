@@ -1,14 +1,21 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.home;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@Slf4j
 @Controller
-public class HomeUIController {
+public class HomeUIController implements InitializingBean {
+
+    @PostConstruct
+    public void init() {
+        log.info("Бин HomeUIController создан и готов к использованию!");
+    }
 
    @GetMapping({"/", "ui/home"})
    public String home(Model model) {
@@ -30,4 +37,8 @@ public class HomeUIController {
         return "pages/home"; // Ищет src/main/resources/templates/index.html
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        log.info("Все свойства Бин HomeUIController установлены и он готов к работе, можно проводить доп.настройки. ");
+    }
 }
