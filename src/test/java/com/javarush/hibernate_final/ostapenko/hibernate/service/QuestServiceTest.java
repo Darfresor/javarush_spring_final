@@ -49,6 +49,28 @@ public class QuestServiceTest {
     }
 
     @Test
+    void getQuestByIdWithStage_whenValidQuestId_thenReturnOptionalQuest() {
+        Long questId = 1L;
+        String questName = "Квест-тест";
+
+        Quest quest = createQuest(questId, questName);
+        Optional<Quest> optionalQuest = Optional.of(quest);
+
+        when(questRepository.findByIdWithStages(questId)).thenReturn(optionalQuest);
+
+        Optional<Quest> result = questService.getQuestByIdWithStage(questId);
+
+        assertThat(result).isPresent();
+        assertThat(result.get().getId()).isEqualTo(questId);
+        assertThat(result.get().getQuestName()).isEqualTo(questName);
+
+        verify(questRepository,times(1)).findByIdWithStages(questId);
+
+
+    }
+
+
+    @Test
     void getQuests_whenValidPageAndSize_thenReturnPageOfQuestTo() {
         int page = 0;
         int size = 5;
