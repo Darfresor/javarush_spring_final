@@ -11,11 +11,23 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+/*
+* isolation:
+*  DEFAULT- уровень самой базы данных
+* READ_UNCOMMITED- чтение данных которые еще не зафиксированы другими
+* READ_COMMITED- устранено грязное чтение
+* REPEATABLE_READ - устранено грязное чтение и неповторяющееся чтение
+* SERIALIZABLE - устранено грязное, неповторяющееся и фантомное чтение
+* timeout - время отведенное на транзакцию( по умолчанию -1, то есть время без ограничений)
+* */
 
 @Service
+@Transactional(noRollbackFor = RuntimeException.class, isolation = Isolation.READ_COMMITTED, timeout = 100)
 public class QuestService {
     private final QuestRepository questRepository;
     private final QuestMapper questMapper;
