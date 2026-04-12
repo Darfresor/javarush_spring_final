@@ -2,6 +2,7 @@ package com.javarush.hibernate_final.ostapenko.hibernate.service;
 
 
 import com.javarush.hibernate_final.ostapenko.hibernate.DTO.QuestTo;
+import com.javarush.hibernate_final.ostapenko.hibernate.custom.QuestAssert;
 import com.javarush.hibernate_final.ostapenko.hibernate.entity.Quest;
 import com.javarush.hibernate_final.ostapenko.hibernate.mapper.QuestMapper;
 import com.javarush.hibernate_final.ostapenko.hibernate.repository.QuestRepository;
@@ -19,7 +20,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.as;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -60,9 +61,10 @@ public class QuestServiceTest {
 
         Optional<Quest> result = questService.getQuestByIdWithStage(questId);
 
-        assertThat(result).isPresent();
-        assertThat(result.get().getId()).isEqualTo(questId);
-        assertThat(result.get().getQuestName()).isEqualTo(questName);
+        QuestAssert.assertThat(result)
+                .isPresent()
+                .hasId(questId)
+                .hasName(questName);
 
         verify(questRepository,times(1)).findByIdWithStages(questId);
 
