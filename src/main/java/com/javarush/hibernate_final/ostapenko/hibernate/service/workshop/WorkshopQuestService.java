@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(noRollbackFor = RuntimeException.class)
 public class WorkshopQuestService {
 
     private final QuestRepository questRepository;

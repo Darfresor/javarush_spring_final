@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -23,11 +24,19 @@ import java.util.Optional;
 * READ_COMMITED- устранено грязное чтение
 * REPEATABLE_READ - устранено грязное чтение и неповторяющееся чтение
 * SERIALIZABLE - устранено грязное, неповторяющееся и фантомное чтение
-* timeout - время отведенное на транзакцию( по умолчанию -1, то есть время без ограничений)
+* timeout: - время отведенное на транзакцию( по умолчанию -1, то есть время без ограничений)
+* Propagation:
+* REQUIRED - целевой метод не может работать без активной транзакции(использует текущую или создает новой если ее нет)
+* REQUIRES_NEW - всегда создавать новую транзакцию(если хотим изолировать транзакцию и ее результаты от родительской если есть)
+* MANDATORY - требуется активная транзакция, если ее нет - будет исключение.
+* SUPPORTS  - целевой метод может выполнять и без транзакции
+* NOT_SUPPORTED - целевой метод не требует транзакции, если она есть, она будет приостановлена
+* NEVER - вызовет исключение если выполнение происходит в транзакции
+* NESTED - создает вложенную транзакцию
 * */
 
 @Service
-@Transactional(noRollbackFor = RuntimeException.class, isolation = Isolation.READ_COMMITTED, timeout = 100)
+@Transactional(noRollbackFor = RuntimeException.class, isolation = Isolation.READ_COMMITTED, timeout = 100, propagation = Propagation.REQUIRED)
 public class QuestService {
     private final QuestRepository questRepository;
     private final QuestMapper questMapper;
