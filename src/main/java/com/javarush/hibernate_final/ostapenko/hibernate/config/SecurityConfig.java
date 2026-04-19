@@ -74,7 +74,8 @@ public class SecurityConfig {
                                 "/bootstrap/**",
                                 "/public",
                                 "/api/auth/**",
-                                "/debug/**"
+                                "/debug/**",
+                                "/actuator/prometheus/**"
                         ).permitAll()
                         .requestMatchers("/secure").hasRole("ADMIN")
                         .anyRequest().authenticated()

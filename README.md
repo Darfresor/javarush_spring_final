@@ -8,10 +8,14 @@
 ## Используемые технологии
 ....
 ### Компоненты observability:
-- Spring Boot Actuator (эндпоинты health, metrics, info)
-- Micrometer (регистрация метрик в формате понятном для Prometheus)
-- Prometheus (сбор и хранение)
-- Grafana (визуализация)
+- Spring Boot Actuator (эндпоинты health, metrics, info). Основной путь: http://localhost:8080/actuator/metrics
+- Micrometer (регистрация метрик в формате понятном для Prometheus). Посмотреть можно по адресу: http://localhost:8080/actuator/prometheus. Данный endpoint для удобства сделан общедоступным.
+- Prometheus (сбор и хранение). Можно посмотреть по пути: http://localhost:9090. 
+- Grafana (визуализация). Можно посмотреть по пути:  http://localhost:3000 (логин: admin/admin).
+  
+  Дашборд для метрик построен на основе  примера 4701 с сайта grafana, так же можно глянуть json его json файл 
+[тут](docker/grafana/dashboard.json)
+  Примечание: для настройка DataSource, чтобы можно было обратиться к Prometheus используем путь: http://host.docker.internal:9090
 
 ## Требования к проекту
 С описанными требованиями и выполненными чекпоинтами можно ознакомиться в файле [требования к проекту](/требования к проекту.md)

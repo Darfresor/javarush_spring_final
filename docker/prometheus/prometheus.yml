@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s      # Интервал сбора метрик
+  external_labels:
+    monitor: 'spring-boot-monitoring'
+
+
+# Конфигурация сбора метрик
+scrape_configs:
+  - job_name: 'spring-boot-app'
+    scrape_interval: 10s
+    metrics_path: '/actuator/prometheus'
+
+    # Статическая конфигурация для локального приложения
+    static_configs:
+      - targets: ['host.docker.internal:8080']  # Для Windows/Mac
+        # ИЛИ для Linux: targets: ['172.17.0.1:8080']
+        labels:
+          application: 'spring-boot-final-project'
+          environment: 'development'
+          service: 'backend-api'
+
+    # Метрики самого Prometheus
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
