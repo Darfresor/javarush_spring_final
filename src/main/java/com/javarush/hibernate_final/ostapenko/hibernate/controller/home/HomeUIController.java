@@ -1,5 +1,8 @@
 package com.javarush.hibernate_final.ostapenko.hibernate.controller.home;
 
+import com.javarush.hibernate_final.ostapenko.hibernate.service.metrics.CustomMetricsService;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
@@ -12,14 +15,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeUIController implements InitializingBean {
 
+    private final CustomMetricsService customMetricsService;
+
+    public HomeUIController(CustomMetricsService customMetricsService) {
+        this.customMetricsService = customMetricsService;
+    }
+
     @PostConstruct
     public void init() {
         log.info("Бин HomeUIController создан и готов к использованию!");
     }
 
-   @GetMapping({"/", "ui/home"})
-   public String home(Model model) {
 
+
+   @GetMapping({"/", "ui/home"})
+   @Counted(value = "custom.metric.counter",
+           extraTags = {"type", "custom_metric", "method", "home"})
+   @Timed(value = "custom.metric.time",
+           extraTags = {"type", "home_page"})
+   public String home(Model model) {
+       customMetricsService.performAction();
 
         model.addAttribute("appTitle", "Мое крутое приложение");
         model.addAttribute("welcomeMessage", "Добро пожаловать в нашу систему!");
