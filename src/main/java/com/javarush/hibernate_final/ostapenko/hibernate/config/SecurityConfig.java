@@ -42,12 +42,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 // ПОЛНОСТЬЮ отключаем CSRF для JWT (важно для работы без сессии)
-                .csrf(csrf -> csrf.disable()) // ← меняем с ignoring на disable
+                .csrf(csrf -> csrf.disable())
 
                 // Настраиваем сессии как STATELESS (без сохранения состояния)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                        .sessionFixation().none() // ← добавляем это
+                        .sessionFixation().none()
                 )
 
                 // ✅ КРИТИЧЕСКИ ВАЖНО для работы с Thymeleaf без сессии

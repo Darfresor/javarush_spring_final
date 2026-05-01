@@ -58,18 +58,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         context.setAuthentication(authentication);
                         SecurityContextHolder.setContext(context);
 
-                        logger.debug("✅ JWT authenticated for user: " + username);
+                        logger.debug("JWT authenticated for user: " + username);
                     } else {
                         SecurityContextHolder.clearContext();
-                        logger.debug("❌ Could not extract username from JWT");
+                        logger.debug("Could not extract username from JWT");
                     }
                 } else {
                     SecurityContextHolder.clearContext();
-                    logger.debug("❌ JWT token invalid");
+                    logger.debug("JWT token invalid");
                 }
             } else {
                 SecurityContextHolder.clearContext();
-                logger.debug("⚠️ No JWT token found");
+                logger.debug("No JWT token found");
             }
 
         } catch (Exception e) {

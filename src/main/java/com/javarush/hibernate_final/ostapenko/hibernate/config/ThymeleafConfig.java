@@ -18,7 +18,7 @@ public class ThymeleafConfig {
     @Bean
     public SpringTemplateEngine templateEngine(
             ITemplateResolver templateResolver,
-            SecurityDialect jwtSecurityDialect) {  // Spring найдет bean по типу
+            SecurityDialect jwtSecurityDialect) {
 
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);

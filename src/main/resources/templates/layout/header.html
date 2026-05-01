@@ -100,7 +100,7 @@
                                     </ul>
                                 </div>
 
-                                <!-- 🔥 НЕАВТОРИЗОВАННЫЙ пользователь -->
+                                <!-- НЕАВТОРИЗОВАННЫЙ пользователь -->
                                 <div th:if="${not #jwt.isAuthenticated()}">
                                     <div class="d-flex gap-2">
                                         <a th:href="@{/ui/login}" class="btn btn-outline-light btn-sm" role="button">Вход</a>
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
 
-                                <!-- 🔥 АВТОРИЗОВАННЫЙ пользователь -->
+                                <!-- АВТОРИЗОВАННЫЙ пользователь -->
                                 <div class="dropdown" th:if="${#jwt.isAuthenticated()}">
                                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                                        data-bs-toggle="dropdown" aria-expanded="false">
